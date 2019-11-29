@@ -1,4 +1,4 @@
-package com.architectcoders.openwheather.model
+package com.architectcoders.openweather.model
 
 import android.Manifest
 import android.app.Activity
@@ -31,5 +31,6 @@ class RegionRepository (activity: Activity) {
         }
         return addresses?.firstOrNull()?.countryCode ?: DEFAULT_REGION
     }
+
 
 }
