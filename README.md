@@ -6,10 +6,12 @@ Open weather calls to **[OpenWeatherMap API](https://openweathermap.org/api)**
 
 Libraries and tools included:
 
-1. Support libraries
+1. Androidx
 2. RecyclerViews
-3. **[Okhttp](https://github.com/square/okhttp)**
-4. **[Retrofit 2](https://github.com/square/retrofit)**
+3. Constraintlayout
+4. **[Okhttp](https://github.com/square/okhttp)**
+5. **[Retrofit 2](https://github.com/square/retrofit)**
+6. **[Coroutines](https://github.com/Kotlin/kotlinx.coroutines)**
 
 # Requirements
 
