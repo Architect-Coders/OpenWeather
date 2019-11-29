@@ -1,7 +1,7 @@
 # OpenWeather
 Open Weather has been created with propuse to follow to **[Architect-Coders](https://github.com/antoniolg/architect-coders)**
 
-Open weather call to **[OpenWeatherMap API](https://openweathermap.org/api)**
+Open weather calls to **[OpenWeatherMap API](https://openweathermap.org/api)**
 
 
 Libraries and tools included:
