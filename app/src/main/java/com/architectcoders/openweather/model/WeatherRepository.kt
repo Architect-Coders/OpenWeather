@@ -6,7 +6,6 @@ class WeatherRepository (activity: Activity) {
     companion object {
         const val LAT = "51"
         const val LON = "0"
-        const val CNT = "10"
         const val APP_ID = ""
     }
     //private val apiKey = activity.getString(R.string.api_key)
@@ -14,10 +13,9 @@ class WeatherRepository (activity: Activity) {
 
     suspend fun findWeather() =
         WeatherDB.service
-            .getWeather(
+            .getLocationWeather(
                 LAT,
                 LON,
-                CNT,
                 APP_ID
             )
             .await()

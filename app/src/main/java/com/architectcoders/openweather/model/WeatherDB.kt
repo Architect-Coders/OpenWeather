@@ -14,7 +14,7 @@ object WeatherDB {
     }
 
     val service: TheWeatherDBService = Retrofit.Builder()
-        .baseUrl("http://samples.openweathermap.org/data/2.5/")
+        .baseUrl("https://api.openweathermap.org/data/2.5/")
         .client(okHttpClient)
         .addCallAdapterFactory(CoroutineCallAdapterFactory())
         .addConverterFactory(GsonConverterFactory.create())

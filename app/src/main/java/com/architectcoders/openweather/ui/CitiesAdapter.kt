@@ -24,8 +24,8 @@ class CitiesAdapter :
     override fun getItemCount(): Int = cities.size
 
     override fun onBindViewHolder(holder: ViewHolder, position: Int) {
-        val movie = cities[position]
-        holder.bind(movie)
+        val cityName = cities[position]
+        holder.bind(cityName)
         //holder.itemView.setOnClickListener { listener(movie) }
     }
     class ViewHolder(view: View) : RecyclerView.ViewHolder(view) {
