@@ -25,14 +25,18 @@ class RegionRepository (activity: Activity) {
         val addresses = this?.let {
             latitude
         }
-        return "$addresses".substring(0..1)
+        // get integer latitude
+        val parts = "$addresses".split(".")
+        return parts[0]
     }
 
     private fun Location?.toLon(): String {
         val addresses = this?.let {
             longitude
         }
-        return "$addresses".substring(0..1)
+        // get integer longitude
+        val parts = "$addresses".split(".")
+        return parts[0]
     }
 
 }
