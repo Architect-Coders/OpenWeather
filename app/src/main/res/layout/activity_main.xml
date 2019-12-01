@@ -25,7 +25,7 @@
         android:layout_marginStart="18dp"
         android:text="@string/location_current_location"
         android:textColor="@color/colorPrimary"
-        android:background="@color/colorAccent"
+        android:background="@drawable/background_button"
         android:textSize="18sp"
         android:textStyle="bold"
         android:textAllCaps="false"
