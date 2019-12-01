@@ -4,7 +4,10 @@ import android.content.Context
 import android.graphics.Color
 import android.location.LocationManager
 import android.os.Bundle
+import android.util.Log
 import com.architectcoders.openweather.model.WeatherRepository
+import com.architectcoders.openweather.model.WeatherResult
+import com.architectcoders.openweather.model.image.CreateImage
 import com.architectcoders.openweather.ui.CitiesAdapter
 import com.architectcoders.openweather.ui.commun.CoroutineScopeActivity
 import com.google.android.material.snackbar.Snackbar
@@ -52,11 +55,25 @@ class MainActivity : CoroutineScopeActivity() {
 
     private fun getWeatherWithLocation() {
         launch {
-            val resultWeather = weatherRepository.findWeather()
-            location_city.text = resultWeather.name
-            //val weatherList = resultWeather.weather
-            //location_city.text = weatherList[0].main
+            showData(weatherRepository.findWeather())
         }
+    }
+
+    private fun showData(resultWeather: WeatherResult) {
+        val weatherList = resultWeather.weather
+        val createImage = CreateImage()
+        location_city.text = resultWeather.name
+
+        Log.e("Hola", "${createImage.getImageFromString(
+            weatherList[0].main,
+            this
+        )}")
+        location_weather_imageView.setImageDrawable(
+            createImage.getImageFromString(
+                weatherList[0].main,
+                this
+            )
+        )
     }
 
     private fun onSNACK(message: String) {

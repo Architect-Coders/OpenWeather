@@ -1,20 +1,16 @@
 package com.architectcoders.openweather.model.image
 
-import android.R
 import android.content.Context
 import android.graphics.drawable.Drawable
 import androidx.core.content.ContextCompat
+import com.architectcoders.openweather.R
 
 
-class SelectImage {
-    var mWeather: ImageMain? = null
+class SelectImage(var weather: ImageMain) {
 
-    fun SelectImage(weather: ImageMain?) {
-        mWeather = weather
-    }
 
-    fun chooseImage(context: Context?): Drawable? {
-        return when (mWeather) {
+    fun chooseImage(context: Context): Drawable? {
+        return when (weather) {
             ImageMain.SUNNY -> ContextCompat.getDrawable(context, R.drawable.ic_sunny)
             ImageMain.CLOUDY -> ContextCompat.getDrawable(context, R.drawable.ic_cloudy)
             ImageMain.PARTLY_CLOUDY -> ContextCompat.getDrawable(
@@ -23,7 +19,6 @@ class SelectImage {
             )
             ImageMain.RAINY -> ContextCompat.getDrawable(context, R.drawable.ic_rainning)
             ImageMain.SNOWY -> ContextCompat.getDrawable(context, R.drawable.ic_snowy)
-            else -> ContextCompat.getDrawable(context, R.drawable.ic_sunny)
         }
     }
 }
