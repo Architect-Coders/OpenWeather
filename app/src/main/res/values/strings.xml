@@ -1,3 +1,5 @@
 <resources>
     <string name="app_name">OpenWeather</string>
+    <string name="location_current_location">Current location\'s weather</string>
+    <string name="location_turn_on">Turn on your location</string>
 </resources>
