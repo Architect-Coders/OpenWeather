@@ -7,9 +7,12 @@ import android.os.Bundle
 import android.util.Log
 import com.architectcoders.openweather.model.WeatherRepository
 import com.architectcoders.openweather.model.WeatherResult
+import com.architectcoders.openweather.model.detail.Detail
 import com.architectcoders.openweather.model.image.CreateImage
 import com.architectcoders.openweather.ui.CitiesAdapter
+import com.architectcoders.openweather.ui.DetailActivity
 import com.architectcoders.openweather.ui.commun.CoroutineScopeActivity
+import com.architectcoders.openweather.ui.commun.startActivity
 import com.google.android.material.snackbar.Snackbar
 import kotlinx.android.synthetic.main.activity_main.*
 import kotlinx.coroutines.launch
@@ -63,17 +66,28 @@ class MainActivity : CoroutineScopeActivity() {
         val weatherList = resultWeather.weather
         val createImage = CreateImage()
         location_city.text = resultWeather.name
-
-        Log.e("Hola", "${createImage.getImageFromString(
-            weatherList[0].main,
-            this
-        )}")
         location_weather_imageView.setImageDrawable(
             createImage.getImageFromString(
                 weatherList[0].main,
                 this
             )
         )
+        location_city.setOnClickListener {
+            startActivity<DetailActivity> {
+                putExtra(
+                    DetailActivity.WEATHER, Detail(
+                        resultWeather.name,
+                        weatherList[0].main,
+                        weatherList[0].description,
+                        "${resultWeather.main.temp}",
+                        "${resultWeather.main.pressure}",
+                        "${resultWeather.main.humidity}",
+                        "${resultWeather.main.tempMin}",
+                        "${resultWeather.main.tempMax}"
+                    )
+                )
+            }
+        }
     }
 
     private fun onSNACK(message: String) {
