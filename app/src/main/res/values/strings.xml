@@ -1,3 +1,12 @@
 <resources>
-    <string name="app_name">OpenWheather</string>
+    <string name="app_name">OpenWeather</string>
+    <string name="location_current_location">Current location\'s weather</string>
+    <string name="location_turn_on">Turn on your location</string>
+    <string name="detail_description">Description:&#160;</string>
+    <string name="detail_temperature">Temperature:&#160;</string>
+    <string name="detail_pressure">Pressure:&#160;</string>
+    <string name="detail_humidity">Humidity:&#160;</string>
+    <string name="detail_temperature_min">Temperature Min:&#160;</string>
+    <string name="detail_temperature_maximum">Temperature Maximum:&#160;</string>
+    <string name="detail_date">Date:&#160;</string>
 </resources>

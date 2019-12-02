@@ -1,4 +1,4 @@
-package com.architectcoders.openwheather
+package com.architectcoders.openweather
 
 import org.junit.Test
 
