@@ -21,14 +21,21 @@ class DetailActivity : AppCompatActivity() {
 
         with(intent.getParcelableExtra<Detail>(WEATHER)) {
             weatherDetailToolbar.title = city
-            showImage(main)
+            showImages(main)
+
             weatherDetailSummary.text = main
             weatherDetailInfo.setMovie(this)
         }
     }
 
-    private fun showImage(image: String) {
+    private fun showImages(image: String) {
         weatherDetailImage.setImageDrawable(
+            getImageFromString(
+                image,
+                this
+            )
+        )
+        weatherImageView.setImageDrawable(
             getImageFromString(
                 image,
                 this
