@@ -80,6 +80,17 @@
                 app:layout_constraintEnd_toEndOf="@+id/weatherBackground"
                 app:layout_constraintStart_toStartOf="@+id/weatherBackground"
                 app:layout_constraintTop_toTopOf="@+id/weatherDetailSummary" />
+
+                <ImageView
+                    android:id="@+id/weatherArrowDown"
+                    android:layout_width="24dp"
+                    android:layout_height="24dp"
+                    android:layout_marginEnd="18dp"
+                    android:background="@drawable/ic_arrow_down"
+                    app:layout_constraintBottom_toBottomOf="@+id/weatherDetailSummary"
+                    app:layout_constraintEnd_toEndOf="@+id/weatherDetailSummary"
+                    app:layout_constraintTop_toTopOf="@+id/weatherDetailSummary" />
+
             </androidx.constraintlayout.widget.ConstraintLayout>
             <com.architectcoders.openweather.ui.customview.WeatherDetailInfoView
                 android:id="@+id/weatherDetailInfo"
