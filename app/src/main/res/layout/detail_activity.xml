@@ -19,7 +19,7 @@
             app:layout_scrollFlags="scroll|exitUntilCollapsed">
 
             <ImageView
-                android:id="@+id/movieDetailImage"
+                android:id="@+id/weatherDetailImage"
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
                 android:fitsSystemWindows="true"
@@ -28,7 +28,7 @@
                 tools:src="@mipmap/ic_launcher" />
 
             <androidx.appcompat.widget.Toolbar
-                android:id="@+id/movieDetailToolbar"
+                android:id="@+id/weatherDetailToolbar"
                 android:layout_width="match_parent"
                 android:layout_height="?attr/actionBarSize"
                 app:title="Movie name" />
@@ -49,15 +49,15 @@
             android:transitionGroup="true">
 
             <TextView
-                android:id="@+id/movieDetailSummary"
+                android:id="@+id/weatherDetailSummary"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:padding="16dp"
                 android:textAppearance="@style/TextAppearance.AppCompat.Medium"
                 tools:text="Lorem ipsum" />
 
-            <com.architectcoders.openweather.ui.WeatherDetailInfoView
-                android:id="@+id/movieDetailInfo"
+            <com.architectcoders.openweather.ui.customview.WeatherDetailInfoView
+                android:id="@+id/weatherDetailInfo"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:padding="16dp"

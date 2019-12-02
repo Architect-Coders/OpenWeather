@@ -1,9 +1,10 @@
-package com.architectcoders.openweather.ui
+package com.architectcoders.openweather.ui.customview
 
 import android.content.Context
 import android.util.AttributeSet
 import android.widget.TextView
 import androidx.core.text.bold
+import com.architectcoders.openweather.R
 import com.architectcoders.openweather.model.detail.Detail
 
 class WeatherDetailInfoView @JvmOverloads constructor(
@@ -15,22 +16,22 @@ class WeatherDetailInfoView @JvmOverloads constructor(
     fun setMovie(detail: Detail) = with(detail) {
         text = androidx.core.text.buildSpannedString {
 
-            bold { append("Description: ") }
+            bold { append(context.getString(R.string.detail_description)) }
             appendln(description)
 
-            bold { append("Temperature: ") }
+            bold { append(context.getString(R.string.detail_temperature)) }
             appendln(temperature)
 
-            bold { append("Pressure: ") }
+            bold { append(context.getString(R.string.detail_pressure)) }
             appendln(pressure)
 
-            bold { append("Humidity: ") }
+            bold { append(context.getString(R.string.detail_humidity)) }
             appendln(humidity)
 
-            bold { append("Temperature Min: ") }
+            bold { append(context.getString(R.string.detail_temperature_min)) }
             appendln(temp_min)
 
-            bold { append("Temperature Maximum: ") }
+            bold { append(context.getString(R.string.detail_temperature_maximum)) }
             appendln(temp_max)
         }
     }

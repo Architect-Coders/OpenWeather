@@ -1,22 +1,19 @@
-package com.architectcoders.openweather
+package com.architectcoders.openweather.ui
 
 import android.content.Context
 import android.graphics.Color
 import android.location.LocationManager
 import android.os.Bundle
-import android.util.Log
+import com.architectcoders.openweather.R
 import com.architectcoders.openweather.model.WeatherRepository
 import com.architectcoders.openweather.model.WeatherResult
 import com.architectcoders.openweather.model.detail.Detail
-import com.architectcoders.openweather.model.image.CreateImage
-import com.architectcoders.openweather.ui.CitiesAdapter
-import com.architectcoders.openweather.ui.DetailActivity
 import com.architectcoders.openweather.ui.commun.CoroutineScopeActivity
+import com.architectcoders.openweather.ui.commun.getImageFromString
 import com.architectcoders.openweather.ui.commun.startActivity
 import com.google.android.material.snackbar.Snackbar
 import kotlinx.android.synthetic.main.activity_main.*
 import kotlinx.coroutines.launch
-
 
 class MainActivity : CoroutineScopeActivity() {
 
@@ -63,15 +60,18 @@ class MainActivity : CoroutineScopeActivity() {
     }
 
     private fun showData(resultWeather: WeatherResult) {
+
         val weatherList = resultWeather.weather
-        val createImage = CreateImage()
+
+
         location_city.text = resultWeather.name
         location_weather_imageView.setImageDrawable(
-            createImage.getImageFromString(
+            getImageFromString(
                 weatherList[0].main,
                 this
             )
         )
+
         location_city.setOnClickListener {
             startActivity<DetailActivity> {
                 putExtra(
