@@ -1,4 +1,4 @@
-package com.architectcoders.openweather.ui
+package com.architectcoders.openweather.ui.detail
 
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle

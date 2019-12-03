@@ -1,4 +1,4 @@
-package com.architectcoders.openweather.ui.customview
+package com.architectcoders.openweather.ui.commun.customview
 
 import android.content.Context
 import android.util.AttributeSet
