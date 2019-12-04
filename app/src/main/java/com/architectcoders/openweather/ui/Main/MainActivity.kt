@@ -35,6 +35,11 @@ class MainActivity : CoroutineScopeActivity(), MainView {
         }
     }
 
+    override fun onDestroy() {
+        presenter.onDestroy()
+        super.onDestroy()
+    }
+
     override fun updateData(resultWeather: WeatherResult) {
 
         val weatherList = resultWeather.weather

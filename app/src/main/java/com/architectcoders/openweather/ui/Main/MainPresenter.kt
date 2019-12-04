@@ -45,6 +45,9 @@ class MainPresenter(var weatherRepository: WeatherRepository) : Scope by Scope.I
         }
     }
 
-
+    fun onDestroy() {
+        this.view = null
+        destroyScope()
+    }
 
 }
