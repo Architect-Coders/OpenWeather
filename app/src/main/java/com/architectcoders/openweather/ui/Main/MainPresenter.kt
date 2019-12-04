@@ -45,4 +45,6 @@ class MainPresenter(var weatherRepository: WeatherRepository) : Scope by Scope.I
         }
     }
 
+
+
 }
