@@ -1,13 +1,17 @@
-package com.architectcoders.openweather.ui
+package com.architectcoders.openweather.ui.Main
 
 import android.content.Context
 import android.graphics.Color
 import android.location.LocationManager
 import android.os.Bundle
+import android.view.View
+import android.view.View.GONE
+import android.view.View.VISIBLE
 import com.architectcoders.openweather.R
 import com.architectcoders.openweather.model.WeatherRepository
 import com.architectcoders.openweather.model.WeatherResult
 import com.architectcoders.openweather.model.detail.Detail
+import com.architectcoders.openweather.ui.detail.DetailActivity
 import com.architectcoders.openweather.ui.commun.CoroutineScopeActivity
 import com.architectcoders.openweather.ui.commun.getImageFromString
 import com.architectcoders.openweather.ui.commun.startActivity
@@ -15,10 +19,9 @@ import com.google.android.material.snackbar.Snackbar
 import kotlinx.android.synthetic.main.activity_main.*
 import kotlinx.coroutines.launch
 
-class MainActivity : CoroutineScopeActivity() {
+class MainActivity : CoroutineScopeActivity(), MainView {
 
-
-    private val weatherRepository: WeatherRepository by lazy { WeatherRepository(this) }
+    private val presenter by lazy { MainPresenter(WeatherRepository(this)) }
     //private val adapter = CitiesAdapter()
 
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -26,40 +29,18 @@ class MainActivity : CoroutineScopeActivity() {
         setContentView(R.layout.activity_main)
 
         //recycler.adapter = adapter
-
+        presenter.onCreate(this)
         location.setOnClickListener {
-            checkLocation()
+            presenter.checkLocation(getSystemService(Context.LOCATION_SERVICE) as LocationManager)
         }
     }
 
-    private fun checkLocation() {
-        val lm = getSystemService(Context.LOCATION_SERVICE) as LocationManager
-        var gpsEnabled = false
-        var networkEnabled = false
-
-        try {
-            gpsEnabled = lm.isProviderEnabled(LocationManager.GPS_PROVIDER)
-        } catch (ex: Exception) {
-        }
-
-        try {
-            networkEnabled = lm.isProviderEnabled(LocationManager.NETWORK_PROVIDER)
-        } catch (ex: Exception) {
-        }
-        if (!gpsEnabled && !networkEnabled) {
-            onSNACK(getString(R.string.location_turn_on))
-        } else {
-            getWeatherWithLocation()
-        }
+    override fun onDestroy() {
+        presenter.onDestroy()
+        super.onDestroy()
     }
 
-    private fun getWeatherWithLocation() {
-        launch {
-            showData(weatherRepository.findWeather())
-        }
-    }
-
-    private fun showData(resultWeather: WeatherResult) {
+    override fun updateData(resultWeather: WeatherResult) {
 
         val weatherList = resultWeather.weather
 
@@ -90,12 +71,21 @@ class MainActivity : CoroutineScopeActivity() {
         }
     }
 
-    private fun onSNACK(message: String) {
+
+    override fun showTurnOnLocation() {
         val snackbar = Snackbar.make(
-            main_constraintLayout, message,
+            main_constraintLayout, getString(R.string.location_turn_on),
             Snackbar.LENGTH_LONG
         ).setAction("Action", null)
         snackbar.setActionTextColor(Color.BLUE)
         snackbar.show()
+    }
+
+    override fun showProgressBar() {
+        locationProgressBar.visibility = VISIBLE
+    }
+
+    override fun hideProgressBar() {
+        locationProgressBar.visibility = GONE
     }
 }

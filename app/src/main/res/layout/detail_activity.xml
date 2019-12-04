@@ -4,7 +4,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".ui.DetailActivity">
+    tools:context=".ui.detail.DetailActivity">
 
     <com.google.android.material.appbar.AppBarLayout
         android:layout_width="match_parent"
@@ -92,7 +92,7 @@
                     app:layout_constraintTop_toTopOf="@+id/weatherDetailSummary" />
 
             </androidx.constraintlayout.widget.ConstraintLayout>
-            <com.architectcoders.openweather.ui.customview.WeatherDetailInfoView
+            <com.architectcoders.openweather.ui.commun.customview.WeatherDetailInfoView
                 android:id="@+id/weatherDetailInfo"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"

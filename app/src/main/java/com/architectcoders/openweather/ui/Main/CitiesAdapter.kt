@@ -1,4 +1,4 @@
-package com.architectcoders.openweather.ui
+package com.architectcoders.openweather.ui.Main
 
 import android.view.View
 import android.view.ViewGroup
@@ -18,7 +18,9 @@ class CitiesAdapter :
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): ViewHolder {
         val view = parent.inflate(R.layout.city_item, false)
-        return ViewHolder(view)
+        return ViewHolder(
+            view
+        )
     }
 
     override fun getItemCount(): Int = cities.size
