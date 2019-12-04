@@ -6,7 +6,7 @@ Open weather calls to **[OpenWeatherMap API](https://openweathermap.org/api)**
 ac-01-solid in **[apicall branch](https://github.com/Architect-Coders/OpenWeather/tree/apicall)**
 
 ac-02-presenetation:
-- 1)mvp **[mvp branch](https://github.com/Architect-Coders/OpenWeather/tree/mvp)**
+- MVP pattern in **[mvp branch](https://github.com/Architect-Coders/OpenWeather/tree/mvp)**
 
 Libraries and tools included:
 
