@@ -4,7 +4,8 @@ Open Weather has been created with propuse to follow to **[Architect-Coders](htt
 Open weather calls to **[OpenWeatherMap API](https://openweathermap.org/api)**
 
 ac-01-solid in **[apicall branch](https://github.com/Architect-Coders/OpenWeather/tree/apicall)**
-ac-02-presenetation
+
+ac-02-presenetation:
 - 1)mvp **[mvp branch](https://github.com/Architect-Coders/OpenWeather/tree/mvp)**
 
 Libraries and tools included:
@@ -15,6 +16,12 @@ Libraries and tools included:
 4. **[Okhttp](https://github.com/square/okhttp)**
 5. **[Retrofit 2](https://github.com/square/retrofit)**
 6. **[Coroutines](https://github.com/Kotlin/kotlinx.coroutines)**
+
+Also visit my blog: **[The developer world is yours](http://thedeveloperworldisyours.com/)**
+
+<a href="http://thedeveloperworldisyours.com/">
+  <img alt="The developer world is yours" src="https://github.com/CabezasGonzalezJavier/AddTextViewButton/blob/master/TheDeveloperWordIsYours.png" />
+</a>
 
 # Requirements
 
@@ -50,7 +57,7 @@ Developed By
 License
 -------
 
-    Copyright 2017 Javier González Cabezas
+    Copyright 2019 Javier González Cabezas
 
     Licensed under the Apache License, Version 2.0 (the "License");
     you may not use this file except in compliance with the License.
