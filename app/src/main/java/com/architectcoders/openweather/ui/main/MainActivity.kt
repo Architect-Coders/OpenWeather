@@ -1,46 +1,69 @@
-package com.architectcoders.openweather.ui.Main
+package com.architectcoders.openweather.ui.main
 
 import android.content.Context
 import android.graphics.Color
 import android.location.LocationManager
 import android.os.Bundle
-import android.view.View
 import android.view.View.GONE
 import android.view.View.VISIBLE
+import androidx.appcompat.app.AppCompatActivity
+import androidx.lifecycle.Observer
+import androidx.lifecycle.ViewModelProviders
 import com.architectcoders.openweather.R
 import com.architectcoders.openweather.model.WeatherRepository
 import com.architectcoders.openweather.model.WeatherResult
 import com.architectcoders.openweather.model.detail.Detail
 import com.architectcoders.openweather.ui.detail.DetailActivity
-import com.architectcoders.openweather.ui.commun.CoroutineScopeActivity
 import com.architectcoders.openweather.ui.commun.getImageFromString
 import com.architectcoders.openweather.ui.commun.startActivity
 import com.google.android.material.snackbar.Snackbar
 import kotlinx.android.synthetic.main.activity_main.*
-import kotlinx.coroutines.launch
 
-class MainActivity : CoroutineScopeActivity(), MainView {
+class MainActivity : AppCompatActivity() {
 
-    private val presenter by lazy { MainPresenter(WeatherRepository(this)) }
+
+    private lateinit var viewModel: MainViewModel
     //private val adapter = CitiesAdapter()
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
 
+
+
+
+        ViewModelProviders.of(
+            this,
+            MainViewModel.MainViewModelFactory(WeatherRepository(this))
+        )[MainViewModel::class.java]
+
         //recycler.adapter = adapter
-        presenter.onCreate(this)
+
         location.setOnClickListener {
-            presenter.checkLocation(getSystemService(Context.LOCATION_SERVICE) as LocationManager)
+            viewModel.checkLocation(getSystemService(Context.LOCATION_SERVICE) as LocationManager)
+        }
+        viewModel.model.observe(this, Observer(::updateUi))
+    }
+
+    private fun updateUi(model: MainViewModel.UiModel) {
+
+        locationProgressBar.visibility =
+            if (model is MainViewModel.UiModel.Loading) VISIBLE else GONE
+
+
+        when (model) {
+            is MainViewModel.UiModel.Content -> updateData(model.weatherResult)
+            is MainViewModel.UiModel.ShowTurnOnLocation -> showTurnOnLocation()
+            is MainViewModel.UiModel.Navigation -> startActivity<DetailActivity> {
+                putExtra(
+                    DetailActivity.WEATHER, model.detail
+                )
+            }
         }
     }
 
-    override fun onDestroy() {
-        presenter.onDestroy()
-        super.onDestroy()
-    }
 
-    override fun updateData(resultWeather: WeatherResult) {
+    private fun updateData(resultWeather: WeatherResult) {
 
         val weatherList = resultWeather.weather
 
@@ -54,25 +77,11 @@ class MainActivity : CoroutineScopeActivity(), MainView {
         )
 
         location_city.setOnClickListener {
-            startActivity<DetailActivity> {
-                putExtra(
-                    DetailActivity.WEATHER, Detail(
-                        resultWeather.name,
-                        weatherList[0].main,
-                        weatherList[0].description,
-                        "${resultWeather.main.temp}",
-                        "${resultWeather.main.pressure}",
-                        "${resultWeather.main.humidity}",
-                        "${resultWeather.main.tempMin}",
-                        "${resultWeather.main.tempMax}"
-                    )
-                )
-            }
+            viewModel::onWeatherClicked
         }
     }
 
-
-    override fun showTurnOnLocation() {
+    private fun showTurnOnLocation() {
         val snackbar = Snackbar.make(
             main_constraintLayout, getString(R.string.location_turn_on),
             Snackbar.LENGTH_LONG
@@ -81,11 +90,4 @@ class MainActivity : CoroutineScopeActivity(), MainView {
         snackbar.show()
     }
 
-    override fun showProgressBar() {
-        locationProgressBar.visibility = VISIBLE
-    }
-
-    override fun hideProgressBar() {
-        locationProgressBar.visibility = GONE
-    }
 }

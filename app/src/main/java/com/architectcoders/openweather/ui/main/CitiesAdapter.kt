@@ -1,4 +1,4 @@
-package com.architectcoders.openweather.ui.Main
+package com.architectcoders.openweather.ui.main
 
 import android.view.View
 import android.view.ViewGroup
