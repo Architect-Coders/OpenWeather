@@ -73,6 +73,9 @@ fun getImageFromString(
         "Extreme" -> {
             return chooseImage(context,ImageMain.SNOWY)
         }
+        "Fog"-> {
+            return chooseImage(context,ImageMain.FOG)
+        }
         else -> {
             return chooseImage(context,ImageMain.SUNNY)
         }
@@ -87,6 +90,7 @@ fun chooseImage(context: Context, weather: ImageMain): Drawable? {
             context,
             R.drawable.ic_partly_cloudy
         )
+        ImageMain.FOG -> ContextCompat.getDrawable(context, R.drawable.ic_fog)
         ImageMain.RAINY -> ContextCompat.getDrawable(context, R.drawable.ic_rainning)
         ImageMain.SNOWY -> ContextCompat.getDrawable(context, R.drawable.ic_snowy)
     }
