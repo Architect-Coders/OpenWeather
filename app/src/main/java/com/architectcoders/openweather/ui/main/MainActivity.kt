@@ -21,6 +21,24 @@ import kotlinx.android.synthetic.main.activity_main.*
 
 class MainActivity : AppCompatActivity() {
 
+    interface DetailInterface{
+        fun clicked(resultWeather: WeatherResult): Detail
+    }
+
+    private val listener = object :  DetailInterface{
+        override fun clicked(resultWeather: WeatherResult): Detail {
+            return Detail(
+                resultWeather.name,
+                resultWeather.weather[0].main,
+                resultWeather.weather[0].description,
+                "${resultWeather.main.temp}",
+                "${resultWeather.main.pressure}",
+                "${resultWeather.main.humidity}",
+                "${resultWeather.main.tempMin}",
+                "${resultWeather.main.tempMax}"
+            )
+        }
+    }
 
     private lateinit var viewModel: MainViewModel
     //private val adapter = CitiesAdapter()
@@ -74,7 +92,17 @@ class MainActivity : AppCompatActivity() {
         )
 
         location_city.setOnClickListener {
-            viewModel::onWeatherClicked
+
+            viewModel.onWeatherClicked(Detail(
+                resultWeather.name,
+                resultWeather.weather[0].main,
+                resultWeather.weather[0].description,
+                "${resultWeather.main.temp}",
+                "${resultWeather.main.pressure}",
+                "${resultWeather.main.humidity}",
+                "${resultWeather.main.tempMin}",
+                "${resultWeather.main.tempMax}"
+            ))
         }
     }
 
