@@ -2,38 +2,42 @@ package com.architectcoders.openweather.ui.detail
 
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
+import androidx.lifecycle.Observer
+import androidx.lifecycle.ViewModelProviders
 import com.architectcoders.openweather.R
 import com.architectcoders.openweather.model.detail.Detail
 import com.architectcoders.openweather.ui.commun.getImageFromString
 import kotlinx.android.synthetic.main.detail_activity.*
 
-class DetailActivity : AppCompatActivity(),DetailView {
+class DetailActivity : AppCompatActivity() {
 
     companion object {
         const val WEATHER = "DetailActivity:weather"
     }
 
-    private val presenter = DetailPresenter()
+    private lateinit var viewModel: DetailViewModel
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.detail_activity)
 
-        presenter.onCreate(this, intent.getParcelableExtra(WEATHER))
+        viewModel = ViewModelProviders.of(
+            this, DetailViewModelFactory(
+                intent.getParcelableExtra(
+                    WEATHER
+                )
+            )
+        )[DetailViewModel::class.java]
 
+        viewModel.model.observe(this, Observer(::updateUI))
     }
 
-    override fun onDestroy() {
-        presenter.onDestroy()
-        super.onDestroy()
-    }
+    private fun updateUI(model: DetailViewModel.UiModel) = with(model.detail) {
+        weatherDetailToolbar.title = city
+        showImages(main)
 
-    override fun updateUI(detail: Detail) {
-        weatherDetailToolbar.title = detail.city
-        showImages(detail.main)
-
-        weatherDetailSummary.text = detail.main
-        weatherDetailInfo.setMovie(detail)
+        weatherDetailSummary.text = main
+        weatherDetailInfo.setMovie(this)
     }
 
     private fun showImages(image: String) {
