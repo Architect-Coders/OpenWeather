@@ -61,9 +61,6 @@ fun getImageFromString(
         "Rain" -> {
             return chooseImage(context,ImageMain.RAINY)
         }
-        "Mist" -> {
-            return chooseImage(context,ImageMain.PARTLY_CLOUDY)
-        }
         "Clouds" -> {
             return chooseImage(context,ImageMain.CLOUDY)
         }
@@ -72,6 +69,9 @@ fun getImageFromString(
         }
         "Extreme" -> {
             return chooseImage(context,ImageMain.SNOWY)
+        }
+        "Mist" -> {
+            return chooseImage(context,ImageMain.FOG)
         }
         "Fog"-> {
             return chooseImage(context,ImageMain.FOG)
