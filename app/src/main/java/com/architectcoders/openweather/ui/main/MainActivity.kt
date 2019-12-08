@@ -29,10 +29,7 @@ class MainActivity : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
 
-
-
-
-        ViewModelProviders.of(
+        viewModel = ViewModelProviders.of(
             this,
             MainViewModel.MainViewModelFactory(WeatherRepository(this))
         )[MainViewModel::class.java]
