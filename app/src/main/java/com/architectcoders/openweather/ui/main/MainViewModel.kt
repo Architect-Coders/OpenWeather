@@ -26,6 +26,7 @@ class MainViewModel(var weatherRepository: WeatherRepository)
         object Loading : UiModel()
         class Content(val weatherResult: WeatherResult) : UiModel()
         class Navigation(val detail: Detail) : UiModel()
+        object RequestLocationPermission : UiModel()
     }
 
     init {
@@ -33,6 +34,10 @@ class MainViewModel(var weatherRepository: WeatherRepository)
     }
 
     private fun refresh() {
+        _model.value = UiModel.RequestLocationPermission
+    }
+
+    fun onCoarsePermissionRequested() {
         launch {
             _model.value = UiModel.Loading
             _model.value = UiModel.Content(weatherRepository.findWeather())

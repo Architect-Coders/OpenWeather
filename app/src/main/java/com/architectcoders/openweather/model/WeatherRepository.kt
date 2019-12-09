@@ -1,12 +1,12 @@
 package com.architectcoders.openweather.model
 
-import android.app.Activity
+import android.app.Application
 import com.architectcoders.openweather.R
 
-class WeatherRepository(activity: Activity) {
+class WeatherRepository(application: Application) {
 
-    private val regionRepository = RegionRepository(activity)
-    private val appID = activity.resources.getString(R.string.key_app)
+    private val regionRepository = RegionRepository(application)
+    private val appID = application.resources.getString(R.string.key_app)
 
     suspend fun findWeather() =
         WeatherDB.service

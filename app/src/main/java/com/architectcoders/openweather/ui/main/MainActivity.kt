@@ -1,5 +1,6 @@
 package com.architectcoders.openweather.ui.main
 
+import android.Manifest
 import android.content.Context
 import android.graphics.Color
 import android.location.LocationManager
@@ -9,6 +10,7 @@ import android.view.View.VISIBLE
 import androidx.appcompat.app.AppCompatActivity
 import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProviders
+import com.architectcoders.openweather.PermissionRequester
 import com.architectcoders.openweather.R
 import com.architectcoders.openweather.model.WeatherRepository
 import com.architectcoders.openweather.model.WeatherResult
@@ -23,6 +25,11 @@ import kotlinx.android.synthetic.main.activity_main.*
 class MainActivity : AppCompatActivity() {
 
     private lateinit var viewModel: MainViewModel
+
+    private val coarsePermissionRequester = PermissionRequester(this,
+        Manifest.permission.ACCESS_COARSE_LOCATION
+    )
+
     //private val adapter = CitiesAdapter()
 
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -30,7 +37,7 @@ class MainActivity : AppCompatActivity() {
         setContentView(R.layout.activity_main)
 
         viewModel = getViewModel {
-            MainViewModel(WeatherRepository(this))
+            MainViewModel(WeatherRepository(application))
         }
 
         //recycler.adapter = adapter
@@ -54,6 +61,9 @@ class MainActivity : AppCompatActivity() {
                 putExtra(
                     DetailActivity.WEATHER, model.detail
                 )
+            }
+            MainViewModel.UiModel.RequestLocationPermission -> coarsePermissionRequester.request {
+                viewModel.onCoarsePermissionRequested()
             }
         }
     }
