@@ -1,15 +1,14 @@
 package com.architectcoders.openweather.model
 
 import android.Manifest
-import android.app.Activity
-import android.location.Geocoder
+import android.app.Application
 import android.location.Location
 
-class RegionRepository (activity: Activity) {
+class RegionRepository (application: Application) {
 
-    private val locationDataSource = PlayServicesLocationDataSource(activity)
+    private val locationDataSource = PlayServicesLocationDataSource(application)
     private val coarsePermissionChecker = PermissionChecker(
-        activity,
+        application,
         Manifest.permission.ACCESS_COARSE_LOCATION
     )
 
@@ -17,7 +16,7 @@ class RegionRepository (activity: Activity) {
     suspend fun findLon(): String = findLastLocation().toLon()
 
     private suspend fun findLastLocation(): Location? {
-        val success = coarsePermissionChecker.request()
+        val success = coarsePermissionChecker.check()
         return if (success) locationDataSource.findLastLocation() else null
     }
 
