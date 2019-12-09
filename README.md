@@ -7,11 +7,11 @@ ac-01-solid in **[apicall branch](https://github.com/Architect-Coders/OpenWeathe
 
 Issues:
 
-#1**[Api Call](https://github.com/Architect-Coders/OpenWeather/issues/1)**
+#1 **[Api Call](https://github.com/Architect-Coders/OpenWeather/issues/1)**
 
-#2**[Location](https://github.com/Architect-Coders/OpenWeather/issues/2)**
+#2 **[Location](https://github.com/Architect-Coders/OpenWeather/issues/2)**
 
-#3**[DetailActivity](https://github.com/Architect-Coders/OpenWeather/issues/3)**
+#3 **[DetailActivity](https://github.com/Architect-Coders/OpenWeather/issues/3)**
 
 
 ac-02-presenetation:
@@ -19,21 +19,21 @@ ac-02-presenetation:
 
 Issues:
 
-#5**[MainActivity with MVP pattern](https://github.com/Architect-Coders/OpenWeather/issues/5)**
+#5 **[MainActivity with MVP pattern](https://github.com/Architect-Coders/OpenWeather/issues/5)**
 
-#6**[DetailActivity with MVP pattern](https://github.com/Architect-Coders/OpenWeather/issues/6)**
+#6 **[DetailActivity with MVP pattern](https://github.com/Architect-Coders/OpenWeather/issues/6)**
 
 - MVVM pattern in **[mvvm branch](https://github.com/Architect-Coders/OpenWeather/tree/mvvm)**
 
 Issues:
 
-#7**[MainActivity with MVVM pattern](https://github.com/Architect-Coders/OpenWeather/issues/7)**
+#7 **[MainActivity with MVVM pattern](https://github.com/Architect-Coders/OpenWeather/issues/7)**
 
-#8**[DetailActivity with MVVM pattern](https://github.com/Architect-Coders/OpenWeather/issues/8)**
+#8 **[DetailActivity with MVVM pattern](https://github.com/Architect-Coders/OpenWeather/issues/8)**
 
-#10**[Factory optimization](https://github.com/Architect-Coders/OpenWeather/issues/10)**
+#10 **[Factory optimization](https://github.com/Architect-Coders/OpenWeather/issues/10)**
 
-#11**[To remove activity in repository](https://github.com/Architect-Coders/OpenWeather/issues/11)**
+#11 **[To remove activity in repository](https://github.com/Architect-Coders/OpenWeather/issues/11)**
 
 Libraries and tools included:
 
