@@ -5,21 +5,35 @@ Open weather calls to **[OpenWeatherMap API](https://openweathermap.org/api)**
 
 ac-01-solid in **[apicall branch](https://github.com/Architect-Coders/OpenWeather/tree/apicall)**
 
-**[Api Call](https://github.com/Architect-Coders/OpenWeather/issues/1)**
-**[Location](https://github.com/Architect-Coders/OpenWeather/issues/2)**
-**[DetailActivity](https://github.com/Architect-Coders/OpenWeather/issues/3)**
+Issues:
+
+#1**[Api Call](https://github.com/Architect-Coders/OpenWeather/issues/1)**
+
+#2**[Location](https://github.com/Architect-Coders/OpenWeather/issues/2)**
+
+#3**[DetailActivity](https://github.com/Architect-Coders/OpenWeather/issues/3)**
 
 
 ac-02-presenetation:
 - MVP pattern in **[mvp branch](https://github.com/Architect-Coders/OpenWeather/tree/mvp)**
-**[MainActivity with MVP pattern](https://github.com/Architect-Coders/OpenWeather/issues/5)**
-**[DetailActivity with MVP pattern](https://github.com/Architect-Coders/OpenWeather/issues/6)**
+
+Issues:
+
+#5**[MainActivity with MVP pattern](https://github.com/Architect-Coders/OpenWeather/issues/5)**
+
+#6**[DetailActivity with MVP pattern](https://github.com/Architect-Coders/OpenWeather/issues/6)**
 
 - MVVM pattern in **[mvvm branch](https://github.com/Architect-Coders/OpenWeather/tree/mvvm)**
-**[MainActivity with MVVM pattern](https://github.com/Architect-Coders/OpenWeather/issues/7)**
-**[DetailActivity with MVVM pattern](https://github.com/Architect-Coders/OpenWeather/issues/8)**
-**[Factory optimization](https://github.com/Architect-Coders/OpenWeather/issues/10)**
-**[To remove activity in repository](https://github.com/Architect-Coders/OpenWeather/issues/11)**
+
+Issues:
+
+#7**[MainActivity with MVVM pattern](https://github.com/Architect-Coders/OpenWeather/issues/7)**
+
+#8**[DetailActivity with MVVM pattern](https://github.com/Architect-Coders/OpenWeather/issues/8)**
+
+#10**[Factory optimization](https://github.com/Architect-Coders/OpenWeather/issues/10)**
+
+#11**[To remove activity in repository](https://github.com/Architect-Coders/OpenWeather/issues/11)**
 
 Libraries and tools included:
 
