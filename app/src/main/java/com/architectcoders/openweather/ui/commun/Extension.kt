@@ -9,6 +9,10 @@ import android.view.View
 import android.view.ViewGroup
 import androidx.annotation.LayoutRes
 import androidx.core.content.ContextCompat
+import androidx.fragment.app.FragmentActivity
+import androidx.lifecycle.ViewModel
+import androidx.lifecycle.ViewModelProvider
+import androidx.lifecycle.ViewModelProviders
 import androidx.recyclerview.widget.DiffUtil
 import androidx.recyclerview.widget.RecyclerView
 import com.architectcoders.openweather.R
@@ -94,4 +98,14 @@ fun chooseImage(context: Context, weather: ImageMain): Drawable? {
         ImageMain.RAINY -> ContextCompat.getDrawable(context, R.drawable.ic_rainning)
         ImageMain.SNOWY -> ContextCompat.getDrawable(context, R.drawable.ic_snowy)
     }
+}
+
+@Suppress("UNCHECKED_CAST")
+inline fun <reified T : ViewModel> FragmentActivity.getViewModel(crossinline factory: () -> T): T {
+
+    val vmFactory = object : ViewModelProvider.Factory {
+        override fun <U : ViewModel> create(modelClass: Class<U>): U = factory() as U
+    }
+
+    return ViewModelProviders.of(this, vmFactory)[T::class.java]
 }

@@ -15,6 +15,7 @@ import com.architectcoders.openweather.model.WeatherResult
 import com.architectcoders.openweather.model.detail.Detail
 import com.architectcoders.openweather.ui.detail.DetailActivity
 import com.architectcoders.openweather.ui.commun.getImageFromString
+import com.architectcoders.openweather.ui.commun.getViewModel
 import com.architectcoders.openweather.ui.commun.startActivity
 import com.google.android.material.snackbar.Snackbar
 import kotlinx.android.synthetic.main.activity_main.*
@@ -28,10 +29,9 @@ class MainActivity : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
 
-        viewModel = ViewModelProviders.of(
-            this,
-            MainViewModel.MainViewModelFactory(WeatherRepository(this))
-        )[MainViewModel::class.java]
+        viewModel = getViewModel {
+            MainViewModel(WeatherRepository(this))
+        }
 
         //recycler.adapter = adapter
 
@@ -71,16 +71,18 @@ class MainActivity : AppCompatActivity() {
 
         location_city.setOnClickListener {
 
-            viewModel.onWeatherClicked(Detail(
-                resultWeather.name,
-                resultWeather.weather[0].main,
-                resultWeather.weather[0].description,
-                "${resultWeather.main.temp}",
-                "${resultWeather.main.pressure}",
-                "${resultWeather.main.humidity}",
-                "${resultWeather.main.tempMin}",
-                "${resultWeather.main.tempMax}"
-            ))
+            viewModel.onWeatherClicked(
+                Detail(
+                    resultWeather.name,
+                    resultWeather.weather[0].main,
+                    resultWeather.weather[0].description,
+                    "${resultWeather.main.temp}",
+                    "${resultWeather.main.pressure}",
+                    "${resultWeather.main.humidity}",
+                    "${resultWeather.main.tempMin}",
+                    "${resultWeather.main.tempMax}"
+                )
+            )
         }
     }
 

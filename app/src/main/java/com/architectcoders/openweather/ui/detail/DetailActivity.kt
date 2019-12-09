@@ -7,6 +7,7 @@ import androidx.lifecycle.ViewModelProviders
 import com.architectcoders.openweather.R
 import com.architectcoders.openweather.model.detail.Detail
 import com.architectcoders.openweather.ui.commun.getImageFromString
+import com.architectcoders.openweather.ui.commun.getViewModel
 import kotlinx.android.synthetic.main.detail_activity.*
 
 class DetailActivity : AppCompatActivity() {
@@ -21,14 +22,9 @@ class DetailActivity : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.detail_activity)
 
-        viewModel = ViewModelProviders.of(
-            this, DetailViewModelFactory(
-                intent.getParcelableExtra(
-                    WEATHER
-                )
-            )
-        )[DetailViewModel::class.java]
-
+        viewModel = getViewModel {
+            DetailViewModel(intent.getParcelableExtra(WEATHER))
+        }
         viewModel.model.observe(this, Observer(::updateUI))
     }
 
