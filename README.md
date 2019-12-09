@@ -5,8 +5,21 @@ Open weather calls to **[OpenWeatherMap API](https://openweathermap.org/api)**
 
 ac-01-solid in **[apicall branch](https://github.com/Architect-Coders/OpenWeather/tree/apicall)**
 
+**[Api Call](https://github.com/Architect-Coders/OpenWeather/issues/1)**
+**[Location](https://github.com/Architect-Coders/OpenWeather/issues/2)**
+**[DetailActivity](https://github.com/Architect-Coders/OpenWeather/issues/3)**
+
+
 ac-02-presenetation:
 - MVP pattern in **[mvp branch](https://github.com/Architect-Coders/OpenWeather/tree/mvp)**
+**[MainActivity with MVP pattern](https://github.com/Architect-Coders/OpenWeather/issues/5)**
+**[DetailActivity with MVP pattern](https://github.com/Architect-Coders/OpenWeather/issues/6)**
+
+- MVVM pattern in **[mvvm branch](https://github.com/Architect-Coders/OpenWeather/tree/mvvm)**
+**[MainActivity with MVVM pattern](https://github.com/Architect-Coders/OpenWeather/issues/7)**
+**[DetailActivity with MVVM pattern](https://github.com/Architect-Coders/OpenWeather/issues/8)**
+**[Factory optimization](https://github.com/Architect-Coders/OpenWeather/issues/10)**
+**[To remove activity in repository](https://github.com/Architect-Coders/OpenWeather/issues/11)**
 
 Libraries and tools included:
 
@@ -16,6 +29,7 @@ Libraries and tools included:
 4. **[Okhttp](https://github.com/square/okhttp)**
 5. **[Retrofit 2](https://github.com/square/retrofit)**
 6. **[Coroutines](https://github.com/Kotlin/kotlinx.coroutines)**
+7. **[Dexter](https://github.com/Karumi/Dexter)**
 
 Also visit my blog: **[The developer world is yours](http://thedeveloperworldisyours.com/)**
 
