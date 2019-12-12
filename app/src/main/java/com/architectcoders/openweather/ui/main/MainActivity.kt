@@ -26,7 +26,8 @@ class MainActivity : AppCompatActivity() {
 
     private lateinit var viewModel: MainViewModel
 
-    private val coarsePermissionRequester = PermissionRequester(this,
+    private val coarsePermissionRequester = PermissionRequester(
+        this,
         Manifest.permission.ACCESS_COARSE_LOCATION
     )
 
@@ -57,13 +58,18 @@ class MainActivity : AppCompatActivity() {
         when (model) {
             is MainViewModel.UiModel.Content -> updateData(model.weatherResult)
             is MainViewModel.UiModel.ShowTurnOnLocation -> showTurnOnLocation()
+            is MainViewModel.UiModel.ShowTurnOnPermission -> showTurnOnPermission()
             is MainViewModel.UiModel.Navigation -> startActivity<DetailActivity> {
                 putExtra(
                     DetailActivity.WEATHER, model.detail
                 )
             }
             MainViewModel.UiModel.RequestLocationPermission -> coarsePermissionRequester.request {
-                viewModel.onCoarsePermissionRequested()
+                if (it) {
+                    viewModel.onCoarsePermissionRequested()
+                } else {
+                    viewModel.showTurnOnPermission()
+                }
             }
         }
     }
@@ -99,6 +105,15 @@ class MainActivity : AppCompatActivity() {
     private fun showTurnOnLocation() {
         val snackbar = Snackbar.make(
             main_constraintLayout, getString(R.string.location_turn_on),
+            Snackbar.LENGTH_LONG
+        ).setAction("Action", null)
+        snackbar.setActionTextColor(Color.BLUE)
+        snackbar.show()
+    }
+
+    private fun showTurnOnPermission() {
+        val snackbar = Snackbar.make(
+            main_constraintLayout, getString(R.string.location_turn_on_permission),
             Snackbar.LENGTH_LONG
         ).setAction("Action", null)
         snackbar.setActionTextColor(Color.BLUE)

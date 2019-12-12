@@ -3,9 +3,7 @@ package com.architectcoders.openweather.ui.detail
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import androidx.lifecycle.Observer
-import androidx.lifecycle.ViewModelProviders
 import com.architectcoders.openweather.R
-import com.architectcoders.openweather.model.detail.Detail
 import com.architectcoders.openweather.ui.commun.getImageFromString
 import com.architectcoders.openweather.ui.commun.getViewModel
 import kotlinx.android.synthetic.main.detail_activity.*

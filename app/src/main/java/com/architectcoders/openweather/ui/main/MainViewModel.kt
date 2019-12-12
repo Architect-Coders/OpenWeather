@@ -22,6 +22,8 @@ class MainViewModel(var weatherRepository: WeatherRepository)
         }
 
     sealed class UiModel {
+
+        object ShowTurnOnPermission : UiModel()
         object ShowTurnOnLocation : UiModel()
         object Loading : UiModel()
         class Content(val weatherResult: WeatherResult) : UiModel()
@@ -67,6 +69,10 @@ class MainViewModel(var weatherRepository: WeatherRepository)
 
     fun onWeatherClicked(detail: Detail) {
         _model.value = UiModel.Navigation(detail)
+    }
+
+    fun showTurnOnPermission(){
+        _model.value = UiModel.ShowTurnOnPermission
     }
 
     @Suppress("UNCHECKED_CAST")
