@@ -35,6 +35,10 @@ Issues:
 
 #11 **[To remove activity in repository](https://github.com/Architect-Coders/OpenWeather/issues/11)**
 
+- JetPack in **[jetpack branch](https://github.com/Architect-Coders/OpenWeather/tree/jetpack)**
+
+#13  **[Save weather with room](https://github.com/Architect-Coders/OpenWeather/issues/13)**
+
 Libraries and tools included:
 
 1. Androidx
