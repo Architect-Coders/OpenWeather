@@ -37,6 +37,8 @@ Issues:
 
 - JetPack in **[jetpack branch](https://github.com/Architect-Coders/OpenWeather/tree/jetpack)**
 
+Issues:
+
 #13  **[Save weather with room](https://github.com/Architect-Coders/OpenWeather/issues/13)**
 
 Libraries and tools included:
