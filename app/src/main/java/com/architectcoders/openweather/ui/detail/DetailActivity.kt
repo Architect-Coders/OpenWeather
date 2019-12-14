@@ -4,8 +4,10 @@ import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import androidx.lifecycle.Observer
 import com.architectcoders.openweather.R
-import com.architectcoders.openweather.ui.commun.getImageFromString
-import com.architectcoders.openweather.ui.commun.getViewModel
+import com.architectcoders.openweather.model.WeatherRepository
+import com.architectcoders.openweather.ui.common.app
+import com.architectcoders.openweather.ui.common.getImageFromString
+import com.architectcoders.openweather.ui.common.getViewModel
 import kotlinx.android.synthetic.main.detail_activity.*
 
 class DetailActivity : AppCompatActivity() {
@@ -21,17 +23,17 @@ class DetailActivity : AppCompatActivity() {
         setContentView(R.layout.detail_activity)
 
         viewModel = getViewModel {
-            DetailViewModel(intent.getParcelableExtra(WEATHER))
+            DetailViewModel(intent.getIntExtra(WEATHER, -1), WeatherRepository(app))
         }
         viewModel.model.observe(this, Observer(::updateUI))
     }
 
-    private fun updateUI(model: DetailViewModel.UiModel) = with(model.detail) {
+    private fun updateUI(model: DetailViewModel.UiModel) = with(model.weather) {
         weatherDetailToolbar.title = city
         showImages(main)
 
         weatherDetailSummary.text = main
-        weatherDetailInfo.setMovie(this)
+        weatherDetailInfo.setWeather(this)
     }
 
     private fun showImages(image: String) {

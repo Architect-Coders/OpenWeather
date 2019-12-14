@@ -9,16 +9,15 @@ import android.view.View.GONE
 import android.view.View.VISIBLE
 import androidx.appcompat.app.AppCompatActivity
 import androidx.lifecycle.Observer
-import androidx.lifecycle.ViewModelProviders
 import com.architectcoders.openweather.PermissionRequester
 import com.architectcoders.openweather.R
 import com.architectcoders.openweather.model.WeatherRepository
-import com.architectcoders.openweather.model.WeatherResult
-import com.architectcoders.openweather.model.detail.Detail
+import com.architectcoders.openweather.model.database.Weather
+import com.architectcoders.openweather.ui.common.app
 import com.architectcoders.openweather.ui.detail.DetailActivity
-import com.architectcoders.openweather.ui.commun.getImageFromString
-import com.architectcoders.openweather.ui.commun.getViewModel
-import com.architectcoders.openweather.ui.commun.startActivity
+import com.architectcoders.openweather.ui.common.getImageFromString
+import com.architectcoders.openweather.ui.common.getViewModel
+import com.architectcoders.openweather.ui.common.startActivity
 import com.google.android.material.snackbar.Snackbar
 import kotlinx.android.synthetic.main.activity_main.*
 
@@ -38,7 +37,7 @@ class MainActivity : AppCompatActivity() {
         setContentView(R.layout.activity_main)
 
         viewModel = getViewModel {
-            MainViewModel(WeatherRepository(application))
+            MainViewModel(WeatherRepository(app))
         }
 
         //recycler.adapter = adapter
@@ -56,12 +55,12 @@ class MainActivity : AppCompatActivity() {
 
 
         when (model) {
-            is MainViewModel.UiModel.Content -> updateData(model.weatherResult)
+            is MainViewModel.UiModel.Content -> updateData(model.weather)
             is MainViewModel.UiModel.ShowTurnOnLocation -> showTurnOnLocation()
             is MainViewModel.UiModel.ShowTurnOnPermission -> showTurnOnPermission()
             is MainViewModel.UiModel.Navigation -> startActivity<DetailActivity> {
                 putExtra(
-                    DetailActivity.WEATHER, model.detail
+                    DetailActivity.WEATHER, model.weather.id
                 )
             }
             MainViewModel.UiModel.RequestLocationPermission -> coarsePermissionRequester.request {
@@ -74,31 +73,19 @@ class MainActivity : AppCompatActivity() {
         }
     }
 
-    private fun updateData(resultWeather: WeatherResult) {
+    private fun updateData(weather: Weather) {
 
-        val weatherList = resultWeather.weather
-        location_city.text = resultWeather.name
+        location_city.text = weather.city
         location_weather_imageView.setImageDrawable(
             getImageFromString(
-                weatherList[0].main,
+                weather.main,
                 this
             )
         )
 
         location_city.setOnClickListener {
 
-            viewModel.onWeatherClicked(
-                Detail(
-                    resultWeather.name,
-                    resultWeather.weather[0].main,
-                    resultWeather.weather[0].description,
-                    "${resultWeather.main.temp}",
-                    "${resultWeather.main.pressure}",
-                    "${resultWeather.main.humidity}",
-                    "${resultWeather.main.tempMin}",
-                    "${resultWeather.main.tempMax}"
-                )
-            )
+            viewModel.onWeatherClicked(weather)
         }
     }
 

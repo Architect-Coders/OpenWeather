@@ -1,4 +1,4 @@
-package com.architectcoders.openweather.ui.commun
+package com.architectcoders.openweather.ui.common
 
 import android.app.Activity
 import android.content.Context
@@ -16,6 +16,7 @@ import androidx.lifecycle.ViewModelProviders
 import androidx.recyclerview.widget.DiffUtil
 import androidx.recyclerview.widget.RecyclerView
 import com.architectcoders.openweather.R
+import com.architectcoders.openweather.WeatherApp
 import com.architectcoders.openweather.model.image.ImageMain
 import kotlin.properties.Delegates
 
@@ -109,3 +110,7 @@ inline fun <reified T : ViewModel> FragmentActivity.getViewModel(crossinline fac
 
     return ViewModelProviders.of(this, vmFactory)[T::class.java]
 }
+
+
+val Context.app: WeatherApp
+    get() = applicationContext as WeatherApp

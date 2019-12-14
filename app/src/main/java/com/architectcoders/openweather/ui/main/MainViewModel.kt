@@ -6,9 +6,8 @@ import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.ViewModelProvider
 import com.architectcoders.openweather.model.WeatherRepository
-import com.architectcoders.openweather.model.WeatherResult
-import com.architectcoders.openweather.model.detail.Detail
-import com.architectcoders.openweather.ui.commun.Scope
+import com.architectcoders.openweather.model.database.Weather
+import com.architectcoders.openweather.ui.common.Scope
 import kotlinx.coroutines.launch
 
 class MainViewModel(var weatherRepository: WeatherRepository)
@@ -26,8 +25,8 @@ class MainViewModel(var weatherRepository: WeatherRepository)
         object ShowTurnOnPermission : UiModel()
         object ShowTurnOnLocation : UiModel()
         object Loading : UiModel()
-        class Content(val weatherResult: WeatherResult) : UiModel()
-        class Navigation(val detail: Detail) : UiModel()
+        class Content(val weather: Weather) : UiModel()
+        class Navigation(val weather: Weather) : UiModel()
         object RequestLocationPermission : UiModel()
     }
 
@@ -67,8 +66,8 @@ class MainViewModel(var weatherRepository: WeatherRepository)
         }
     }
 
-    fun onWeatherClicked(detail: Detail) {
-        _model.value = UiModel.Navigation(detail)
+    fun onWeatherClicked(weather: Weather) {
+        _model.value = UiModel.Navigation(weather)
     }
 
     fun showTurnOnPermission(){

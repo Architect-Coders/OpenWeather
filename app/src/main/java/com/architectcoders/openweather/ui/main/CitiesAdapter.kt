@@ -5,8 +5,8 @@ import android.view.ViewGroup
 import androidx.recyclerview.widget.RecyclerView
 import com.architectcoders.openweather.R
 import com.architectcoders.openweather.model.Weather
-import com.architectcoders.openweather.ui.commun.basicDiffUtil
-import com.architectcoders.openweather.ui.commun.inflate
+import com.architectcoders.openweather.ui.common.basicDiffUtil
+import com.architectcoders.openweather.ui.common.inflate
 import kotlinx.android.synthetic.main.city_item.view.*
 
 class CitiesAdapter :
