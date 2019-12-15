@@ -32,6 +32,10 @@ class WeatherRepository(application: WeatherApp) {
         db.weatherDao().findByTimestamp(timestamp)
     }
 
+    suspend fun findByCity(city: String): List<DbWeather> = withContext(Dispatchers.IO) {
+        db.weatherDao().findByCity(city)
+    }
+
 }
 
 private fun ServerWeather.convertToDbWeather() = DbWeather(
