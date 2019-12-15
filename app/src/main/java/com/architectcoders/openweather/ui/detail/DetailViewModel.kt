@@ -7,7 +7,7 @@ import com.architectcoders.openweather.model.database.Weather
 import com.architectcoders.openweather.ui.common.ScopedViewModel
 import kotlinx.coroutines.launch
 
-class DetailViewModel(private val weatherId: Int, private var weatherRepository: WeatherRepository)
+class DetailViewModel(private val timestamp: String, private var weatherRepository: WeatherRepository)
     : ScopedViewModel() {
 
     class UiModel(val weather: Weather)
@@ -19,7 +19,7 @@ class DetailViewModel(private val weatherId: Int, private var weatherRepository:
         }
 
     private fun findWeather() = launch {
-        _model.value = UiModel(weatherRepository.findById(weatherId))
+        _model.value = UiModel(weatherRepository.findByTimestamp(timestamp))
     }
 
 }

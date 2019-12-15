@@ -60,7 +60,7 @@ class MainActivity : AppCompatActivity() {
             is MainViewModel.UiModel.ShowTurnOnPermission -> showTurnOnPermission()
             is MainViewModel.UiModel.Navigation -> startActivity<DetailActivity> {
                 putExtra(
-                    DetailActivity.WEATHER, model.weather.id
+                    DetailActivity.WEATHER, model.weather.timestamp
                 )
             }
             MainViewModel.UiModel.RequestLocationPermission -> coarsePermissionRequester.request {

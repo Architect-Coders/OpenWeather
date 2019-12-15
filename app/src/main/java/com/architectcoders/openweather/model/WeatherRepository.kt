@@ -28,8 +28,8 @@ class WeatherRepository(application: WeatherApp) {
         }
     }
 
-    suspend fun findById(id: Int): DbWeather = withContext(Dispatchers.IO) {
-        db.weatherDao().findById(id)
+    suspend fun findByTimestamp(timestamp: String): DbWeather = withContext(Dispatchers.IO) {
+        db.weatherDao().findByTimestamp(timestamp)
     }
 
 }

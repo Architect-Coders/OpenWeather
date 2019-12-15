@@ -11,6 +11,9 @@ interface WeatherDao {
     @Query("SELECT * FROM Weather WHERE id = :id")
     fun findById(id: Int): Weather
 
+    @Query("SELECT * FROM Weather WHERE timestamp = :timestamp")
+    fun findByTimestamp(timestamp: String): Weather
+
     @Query("SELECT * FROM Weather WHERE city = :city")
     fun findByCity(city: String): List<Weather>
 

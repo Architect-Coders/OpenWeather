@@ -23,7 +23,7 @@ class DetailActivity : AppCompatActivity() {
         setContentView(R.layout.detail_activity)
 
         viewModel = getViewModel {
-            DetailViewModel(intent.getIntExtra(WEATHER, -1), WeatherRepository(app))
+            DetailViewModel(intent.getStringExtra(WEATHER), WeatherRepository(app))
         }
         viewModel.model.observe(this, Observer(::updateUI))
     }
