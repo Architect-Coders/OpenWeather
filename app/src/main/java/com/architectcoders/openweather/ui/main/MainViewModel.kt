@@ -8,44 +8,56 @@ import androidx.lifecycle.ViewModelProvider
 import com.architectcoders.openweather.model.WeatherRepository
 import com.architectcoders.openweather.model.database.Weather
 import com.architectcoders.openweather.ui.common.Scope
+import com.architectcoders.openweather.ui.common.Event
 import kotlinx.coroutines.launch
 
 class MainViewModel(var weatherRepository: WeatherRepository)
     : ViewModel(), Scope by Scope.Impl() {
 
-    private val _model = MutableLiveData<UiModel>()
-    val model: LiveData<UiModel>
-        get() {
-            if (_model.value == null) refresh()
-            return _model
-        }
+    private val _showLocationOn = MutableLiveData<String>()
+    val showLocationOn: LiveData<String> get() = _showLocationOn
+
+    private val _loading = MutableLiveData<Boolean>()
+    val loading: LiveData<Boolean> get() = _loading
+
+    private val _weather = MutableLiveData<String>()
+    val weather: LiveData<String> get() = _weather
+
+    private val _navigateToWeather = MutableLiveData<Event<Int>>()
+    val navigateToWeather: LiveData<Event<Int>> get() = _navigateToWeather
+
+    private val _requestLocationPermission = MutableLiveData<Event<Unit>>()
+    val requestLocationPermission: LiveData<Event<Unit>> get() = _requestLocationPermission
+
 
     sealed class UiModel {
 
         object ShowTurnOnPermission : UiModel()
         object ShowTurnOnLocation : UiModel()
         object Loading : UiModel()
-        class Content(val weather: Weather) : UiModel()
+        class Content(val weather: String) : UiModel()
         class Navigation(val weather: Weather) : UiModel()
         object RequestLocationPermission : UiModel()
     }
 
     init {
         initScope()
+        refresh()
     }
 
     private fun refresh() {
-        _model.value = UiModel.RequestLocationPermission
+        _requestLocationPermission.value = Event(Unit)
     }
 
     fun onCoarsePermissionRequested() {
         launch {
-            _model.value = UiModel.Loading
-            _model.value = UiModel.Content(weatherRepository.findWeather())
+            _loading.value = true
+            _weather.value = weatherRepository.findWeather().city
+            _loading.value = false
         }
     }
 
-    fun checkLocation(locationManager: LocationManager) {
+    fun checkLocation(locationManager: LocationManager, message :String) {
 
         var gpsEnabled = false
         var networkEnabled = false
@@ -60,18 +72,18 @@ class MainViewModel(var weatherRepository: WeatherRepository)
         } catch (ex: Exception) {
         }
         if (!gpsEnabled && !networkEnabled) {
-            _model.value = UiModel.ShowTurnOnLocation
+            _showLocationOn.value = message
         } else {
             refresh()
         }
     }
 
     fun onWeatherClicked(weather: Weather) {
-        _model.value = UiModel.Navigation(weather)
+        _navigateToWeather.value = Event(weather.id)
     }
 
-    fun showTurnOnPermission(){
-        _model.value = UiModel.ShowTurnOnPermission
+    fun showTurnOnPermission(message :String){
+        _showLocationOn.value = message
     }
 
     @Suppress("UNCHECKED_CAST")

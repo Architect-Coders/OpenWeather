@@ -8,16 +8,15 @@ import android.os.Bundle
 import android.view.View.GONE
 import android.view.View.VISIBLE
 import androidx.appcompat.app.AppCompatActivity
+import androidx.databinding.DataBindingUtil
 import androidx.lifecycle.Observer
 import com.architectcoders.openweather.PermissionRequester
 import com.architectcoders.openweather.R
+import com.architectcoders.openweather.databinding.ActivityMainBinding
 import com.architectcoders.openweather.model.WeatherRepository
 import com.architectcoders.openweather.model.database.Weather
-import com.architectcoders.openweather.ui.common.app
+import com.architectcoders.openweather.ui.common.*
 import com.architectcoders.openweather.ui.detail.DetailActivity
-import com.architectcoders.openweather.ui.common.getImageFromString
-import com.architectcoders.openweather.ui.common.getViewModel
-import com.architectcoders.openweather.ui.common.startActivity
 import com.google.android.material.snackbar.Snackbar
 import kotlinx.android.synthetic.main.activity_main.*
 
@@ -34,18 +33,31 @@ class MainActivity : AppCompatActivity() {
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        setContentView(R.layout.activity_main)
 
-        viewModel = getViewModel {
-            MainViewModel(WeatherRepository(app))
-        }
+        viewModel = getViewModel { MainViewModel(WeatherRepository(app)) }
+
+        val binding: ActivityMainBinding =
+            DataBindingUtil.setContentView(this, R.layout.activity_main)
+
+        binding.viewmodel = viewModel
+        binding.lifecycleOwner = this
 
         //recycler.adapter = adapter
+        viewModel.navigateToWeather.observe(this, EventObserver { id ->
+            startActivity<DetailActivity> {
+                putExtra(DetailActivity.WEATHER, id)
+            }
+        })
 
+        viewModel.requestLocationPermission.observe(this, EventObserver {
+            coarsePermissionRequester.request {
+                viewModel.onCoarsePermissionRequested()
+            }
+        })
         location.setOnClickListener {
-            viewModel.checkLocation(getSystemService(Context.LOCATION_SERVICE) as LocationManager)
+            viewModel.checkLocation(getSystemService(Context.LOCATION_SERVICE) as LocationManager,
+                resources.getString(R.string.location_turn_on_permission))
         }
-        viewModel.model.observe(this, Observer(::updateUi))
     }
 
     private fun updateUi(model: MainViewModel.UiModel) {
@@ -67,7 +79,7 @@ class MainActivity : AppCompatActivity() {
                 if (it) {
                     viewModel.onCoarsePermissionRequested()
                 } else {
-                    viewModel.showTurnOnPermission()
+                    viewModel.showTurnOnPermission(resources.getString(R.string.location_turn_on_permission))
                 }
             }
         }
