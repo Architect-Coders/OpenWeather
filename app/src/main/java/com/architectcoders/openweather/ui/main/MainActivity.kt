@@ -11,6 +11,7 @@ import androidx.appcompat.app.AppCompatActivity
 import androidx.lifecycle.Observer
 import com.architectcoders.data.repository.RegionRepository
 import com.architectcoders.data.repository.WeatherRepository
+import com.architectcoders.domain.Weather
 import com.architectcoders.openweather.PermissionRequester
 import com.architectcoders.openweather.R
 import com.architectcoders.openweather.model.AndroidPermissionChecker

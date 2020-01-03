@@ -4,7 +4,6 @@ import android.location.LocationManager
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
-import androidx.lifecycle.ViewModelProvider
 import com.architectcoders.domain.Weather
 import com.architectcoders.openweather.ui.common.Scope
 import com.architectcoders.usescases.GetWeather
@@ -72,13 +71,6 @@ class MainViewModel(var getWeather: GetWeather)
 
     fun showTurnOnPermission(){
         _model.value = UiModel.ShowTurnOnPermission
-    }
-
-    @Suppress("UNCHECKED_CAST")
-    class MainViewModelFactory(private val getWeather: GetWeather) :
-        ViewModelProvider.Factory {
-        override fun <T : ViewModel?> create(modelClass: Class<T>): T =
-            MainViewModel(getWeather) as T
     }
 
 }

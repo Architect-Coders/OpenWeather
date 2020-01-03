@@ -19,4 +19,12 @@ class RoomDataSource(db: WeatherDatabase) :
     override fun saveWeather(weather: DomainWeathear) {
         dao.insertWeather(weather.toRoomWeather())
     }
+
+    override fun findByTimestamp(timestamp: String): com.architectcoders.domain.Weather {
+        return dao.findByTimestamp(timestamp).toDomainWeather()
+    }
+
+    override fun findByCity(city: String): List<com.architectcoders.domain.Weather> {
+        return dao.findByCity(city).map { it.toDomainWeather() }
+    }
 }

@@ -21,4 +21,12 @@ class WeatherRepository(
         return weather
     }
 
+    suspend fun findByTimestamp(timestamp: String): Weather {
+        return localDataSource.findByTimestamp(timestamp)
+    }
+
+    suspend fun findByCity(city: String): List<Weather> {
+        return localDataSource.findByCity(city)
+    }
+
 }
