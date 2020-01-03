@@ -9,15 +9,17 @@ import android.view.View.GONE
 import android.view.View.VISIBLE
 import androidx.appcompat.app.AppCompatActivity
 import androidx.lifecycle.Observer
+import com.architectcoders.data.WeatherRepository
 import com.architectcoders.openweather.PermissionRequester
 import com.architectcoders.openweather.R
-import com.architectcoders.openweather.model.WeatherRepository
+import com.architectcoders.openweather.model.database.RoomDataSource
 import com.architectcoders.openweather.model.database.Weather
 import com.architectcoders.openweather.ui.common.app
 import com.architectcoders.openweather.ui.detail.DetailActivity
 import com.architectcoders.openweather.ui.common.getImageFromString
 import com.architectcoders.openweather.ui.common.getViewModel
 import com.architectcoders.openweather.ui.common.startActivity
+import com.architectcoders.usescases.GetWeather
 import com.google.android.material.snackbar.Snackbar
 import kotlinx.android.synthetic.main.activity_main.*
 
@@ -37,7 +39,8 @@ class MainActivity : AppCompatActivity() {
         setContentView(R.layout.activity_main)
 
         viewModel = getViewModel {
-            MainViewModel(WeatherRepository(app))
+            val localDataSource = RoomDataSource(app.db)
+            MainViewModel(GetWeather(WeatherRepository(localDataSource)))
         }
 
         //recycler.adapter = adapter

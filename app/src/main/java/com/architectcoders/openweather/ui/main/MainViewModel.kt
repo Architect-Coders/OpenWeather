@@ -5,12 +5,12 @@ import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.ViewModelProvider
-import com.architectcoders.openweather.model.WeatherRepository
-import com.architectcoders.openweather.model.database.Weather
+import com.architectcoders.domain.Weather
 import com.architectcoders.openweather.ui.common.Scope
+import com.architectcoders.usescases.GetWeather
 import kotlinx.coroutines.launch
 
-class MainViewModel(var weatherRepository: WeatherRepository)
+class MainViewModel(var getWeather: GetWeather)
     : ViewModel(), Scope by Scope.Impl() {
 
     private val _model = MutableLiveData<UiModel>()
@@ -41,7 +41,7 @@ class MainViewModel(var weatherRepository: WeatherRepository)
     fun onCoarsePermissionRequested() {
         launch {
             _model.value = UiModel.Loading
-            _model.value = UiModel.Content(weatherRepository.findWeather())
+            _model.value = UiModel.Content(getWeather.invoke())
         }
     }
 
@@ -75,10 +75,10 @@ class MainViewModel(var weatherRepository: WeatherRepository)
     }
 
     @Suppress("UNCHECKED_CAST")
-    class MainViewModelFactory(val weatherRepository: WeatherRepository) :
+    class MainViewModelFactory(private val getWeather: GetWeather) :
         ViewModelProvider.Factory {
         override fun <T : ViewModel?> create(modelClass: Class<T>): T =
-            MainViewModel(weatherRepository) as T
+            MainViewModel(getWeather) as T
     }
 
 }
