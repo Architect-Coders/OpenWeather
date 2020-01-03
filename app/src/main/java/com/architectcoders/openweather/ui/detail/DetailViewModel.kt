@@ -2,7 +2,7 @@ package com.architectcoders.openweather.ui.detail
 
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
-import com.architectcoders.openweather.model.WeatherRepository
+import com.architectcoders.openweather.model.server.WeatherRepository
 import com.architectcoders.openweather.model.database.Weather
 import com.architectcoders.openweather.ui.common.ScopedViewModel
 import kotlinx.coroutines.launch

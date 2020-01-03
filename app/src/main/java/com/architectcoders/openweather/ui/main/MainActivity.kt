@@ -9,11 +9,14 @@ import android.view.View.GONE
 import android.view.View.VISIBLE
 import androidx.appcompat.app.AppCompatActivity
 import androidx.lifecycle.Observer
-import com.architectcoders.data.WeatherRepository
+import com.architectcoders.data.repository.RegionRepository
+import com.architectcoders.data.repository.WeatherRepository
 import com.architectcoders.openweather.PermissionRequester
 import com.architectcoders.openweather.R
+import com.architectcoders.openweather.model.AndroidPermissionChecker
+import com.architectcoders.openweather.model.PlayServicesLocationDataSource
 import com.architectcoders.openweather.model.database.RoomDataSource
-import com.architectcoders.openweather.model.database.Weather
+import com.architectcoders.openweather.model.server.WeatherDataSource
 import com.architectcoders.openweather.ui.common.app
 import com.architectcoders.openweather.ui.detail.DetailActivity
 import com.architectcoders.openweather.ui.common.getImageFromString
@@ -40,7 +43,17 @@ class MainActivity : AppCompatActivity() {
 
         viewModel = getViewModel {
             val localDataSource = RoomDataSource(app.db)
-            MainViewModel(GetWeather(WeatherRepository(localDataSource)))
+            MainViewModel(GetWeather(
+                WeatherRepository(
+                    localDataSource,
+                    WeatherDataSource(),
+                    RegionRepository(
+                        PlayServicesLocationDataSource(app),
+                        AndroidPermissionChecker(app)
+                    ),
+                    resources.getString(R.string.key_app)
+                )
+            ))
         }
 
         //recycler.adapter = adapter

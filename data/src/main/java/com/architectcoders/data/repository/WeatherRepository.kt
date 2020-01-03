@@ -1,5 +1,7 @@
-package com.architectcoders.data
+package com.architectcoders.data.repository
 
+import com.architectcoders.data.source.LocalDataSource
+import com.architectcoders.data.source.RemoteDataSource
 import com.architectcoders.domain.Weather
 
 class WeatherRepository(
@@ -9,7 +11,7 @@ class WeatherRepository(
     private val appID: String
 ) {
 
-    fun getWeather(): Weather {
+    suspend fun getWeather(): Weather {
         val weather = remoteDataSource.getWeather(
             regionRepository.findLat(),
             regionRepository.findlon(),
@@ -19,13 +21,4 @@ class WeatherRepository(
         return weather
     }
 
-}
-
-interface LocalDataSource {
-    fun getListWeather(city: String): List<Weather>
-    fun saveWeather(weather: Weather)
-}
-
-interface RemoteDataSource {
-    fun getWeather(lat: String, lon: String, appID: String): Weather
 }

@@ -2,17 +2,14 @@ package com.architectcoders.openweather.ui.detail
 
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
-import android.view.Gravity
-import android.widget.LinearLayout
 import androidx.lifecycle.Observer
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.architectcoders.openweather.R
-import com.architectcoders.openweather.model.WeatherRepository
+import com.architectcoders.openweather.model.server.WeatherRepository
 import com.architectcoders.openweather.model.database.Weather
 import com.architectcoders.openweather.ui.common.app
 import com.architectcoders.openweather.ui.common.getImageFromString
 import com.architectcoders.openweather.ui.common.getViewModel
-import com.architectcoders.openweather.ui.main.MainViewModel
 import kotlinx.android.synthetic.main.detail_activity.*
 
 class DetailActivity : AppCompatActivity() {
@@ -29,7 +26,11 @@ class DetailActivity : AppCompatActivity() {
         setContentView(R.layout.detail_activity)
 
         viewModel = getViewModel {
-            DetailViewModel(intent.getStringExtra(WEATHER), WeatherRepository(app))
+            DetailViewModel(intent.getStringExtra(WEATHER),
+                WeatherRepository(
+                    app
+                )
+            )
         }
         viewModel.model.observe(this, Observer(::updateUI))
         initWeatherList()

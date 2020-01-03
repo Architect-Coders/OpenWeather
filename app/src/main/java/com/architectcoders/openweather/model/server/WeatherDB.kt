@@ -1,4 +1,4 @@
-package com.architectcoders.openweather.model
+package com.architectcoders.openweather.model.server
 
 import com.jakewharton.retrofit2.adapter.kotlin.coroutines.CoroutineCallAdapterFactory
 import okhttp3.OkHttpClient
@@ -20,6 +20,7 @@ object WeatherDB {
         .addConverterFactory(GsonConverterFactory.create())
         .build()
         .run {
-            create<TheWeatherDBService>(TheWeatherDBService::class.java)
+            create<TheWeatherDBService>(
+                TheWeatherDBService::class.java)
         }
 }
