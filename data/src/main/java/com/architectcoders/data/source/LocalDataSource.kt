@@ -3,8 +3,8 @@ package com.architectcoders.data.source
 import com.architectcoders.domain.Weather
 
 interface LocalDataSource {
-    fun getListWeather(city: String): List<Weather>
-    fun saveWeather(weather: Weather)
-    fun findByTimestamp(timestamp: String): Weather
-    fun findByCity(city: String): List<Weather>
+    suspend fun getListWeather(city: String): List<Weather>
+    suspend fun saveWeather(weather: Weather)
+    suspend fun findByTimestamp(timestamp: String): Weather
+    suspend fun findByCity(city: String): List<Weather>
 }
