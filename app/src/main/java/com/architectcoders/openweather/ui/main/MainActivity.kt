@@ -44,17 +44,19 @@ class MainActivity : AppCompatActivity() {
 
         viewModel = getViewModel {
             val localDataSource = RoomDataSource(app.db)
-            MainViewModel(GetWeather(
-                WeatherRepository(
-                    localDataSource,
-                    WeatherDataSource(),
-                    RegionRepository(
-                        PlayServicesLocationDataSource(app),
-                        AndroidPermissionChecker(app)
-                    ),
-                    resources.getString(R.string.key_app)
+            MainViewModel(
+                GetWeather(
+                    WeatherRepository(
+                        localDataSource,
+                        WeatherDataSource(),
+                        RegionRepository(
+                            PlayServicesLocationDataSource(app),
+                            AndroidPermissionChecker(app)
+                        ),
+                        resources.getString(R.string.key_app)
+                    )
                 )
-            ))
+            )
         }
 
         //recycler.adapter = adapter
@@ -63,6 +65,16 @@ class MainActivity : AppCompatActivity() {
             viewModel.checkLocation(getSystemService(Context.LOCATION_SERVICE) as LocationManager)
         }
         viewModel.model.observe(this, Observer(::updateUi))
+
+        viewModel.navigation.observe(this, Observer { event ->
+            event.getContentIfNotHandled()?.let {
+                startActivity<DetailActivity> {
+                    putExtra(
+                        DetailActivity.WEATHER, it.timestamp
+                    )
+                }
+            }
+        })
     }
 
     private fun updateUi(model: MainViewModel.UiModel) {
@@ -75,11 +87,6 @@ class MainActivity : AppCompatActivity() {
             is MainViewModel.UiModel.Content -> updateData(model.weather)
             is MainViewModel.UiModel.ShowTurnOnLocation -> showTurnOnLocation()
             is MainViewModel.UiModel.ShowTurnOnPermission -> showTurnOnPermission()
-            is MainViewModel.UiModel.Navigation -> startActivity<DetailActivity> {
-                putExtra(
-                    DetailActivity.WEATHER, model.weather.timestamp
-                )
-            }
             MainViewModel.UiModel.RequestLocationPermission -> coarsePermissionRequester.request {
                 if (it) {
                     viewModel.onCoarsePermissionRequested()

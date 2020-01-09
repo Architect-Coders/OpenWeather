@@ -5,6 +5,7 @@ import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 import com.architectcoders.domain.Weather
+import com.architectcoders.openweather.ui.common.Event
 import com.architectcoders.openweather.ui.common.Scope
 import com.architectcoders.usescases.GetWeather
 import kotlinx.coroutines.launch
@@ -19,13 +20,15 @@ class MainViewModel(var getWeather: GetWeather)
             return _model
         }
 
+    private val _navigation = MutableLiveData<Event<Weather>>()
+    val navigation: LiveData<Event<Weather>> = _navigation
+
     sealed class UiModel {
 
         object ShowTurnOnPermission : UiModel()
         object ShowTurnOnLocation : UiModel()
         object Loading : UiModel()
         class Content(val weather: Weather) : UiModel()
-        class Navigation(val weather: Weather) : UiModel()
         object RequestLocationPermission : UiModel()
     }
 
@@ -66,7 +69,7 @@ class MainViewModel(var getWeather: GetWeather)
     }
 
     fun onWeatherClicked(weather: Weather) {
-        _model.value = UiModel.Navigation(weather)
+        _navigation.value = Event(weather)
     }
 
     fun showTurnOnPermission(){
