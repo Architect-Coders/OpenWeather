@@ -12,6 +12,7 @@ import androidx.lifecycle.Observer
 import com.architectcoders.data.repository.RegionRepository
 import com.architectcoders.data.repository.WeatherRepository
 import com.architectcoders.domain.Weather
+import com.architectcoders.openweather.CheckLocation
 import com.architectcoders.openweather.PermissionRequester
 import com.architectcoders.openweather.R
 import com.architectcoders.openweather.model.AndroidPermissionChecker
@@ -35,6 +36,9 @@ class MainActivity : AppCompatActivity() {
         this,
         Manifest.permission.ACCESS_COARSE_LOCATION
     )
+
+    private lateinit var checkLocation : CheckLocation
+
 
     //private val adapter = CitiesAdapter()
 
@@ -60,9 +64,10 @@ class MainActivity : AppCompatActivity() {
         }
 
         //recycler.adapter = adapter
-
+        checkLocation = CheckLocation(
+            getSystemService(Context.LOCATION_SERVICE) as LocationManager)
         location.setOnClickListener {
-            viewModel.checkLocation(getSystemService(Context.LOCATION_SERVICE) as LocationManager)
+            viewModel.checkLocation()
         }
         viewModel.model.observe(this, Observer(::updateUi))
 
@@ -87,13 +92,8 @@ class MainActivity : AppCompatActivity() {
             is MainViewModel.UiModel.Content -> updateData(model.weather)
             is MainViewModel.UiModel.ShowTurnOnLocation -> showTurnOnLocation()
             is MainViewModel.UiModel.ShowTurnOnPermission -> showTurnOnPermission()
-            MainViewModel.UiModel.RequestLocationPermission -> coarsePermissionRequester.request {
-                if (it) {
-                    viewModel.onCoarsePermissionRequested()
-                } else {
-                    viewModel.showTurnOnPermission()
-                }
-            }
+            is MainViewModel.UiModel.CheckLocation -> checkLocation()
+            MainViewModel.UiModel.RequestLocationPermission -> checkLocation()
         }
     }
 
@@ -129,6 +129,26 @@ class MainActivity : AppCompatActivity() {
         ).setAction("Action", null)
         snackbar.setActionTextColor(Color.BLUE)
         snackbar.show()
+    }
+
+    private fun checkPermission() {
+        coarsePermissionRequester.request {
+            if (it) {
+                viewModel.onCoarsePermissionRequested()
+            } else {
+                viewModel.showTurnOnPermission()
+            }
+        }
+    }
+
+    private fun checkLocation() {
+        checkLocation.checkLocation {
+            if (it) {
+                checkPermission()
+            } else {
+                viewModel.showTurnOnLocation()
+            }
+        }
     }
 
 }

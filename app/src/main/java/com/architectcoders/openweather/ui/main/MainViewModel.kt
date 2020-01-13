@@ -1,6 +1,5 @@
 package com.architectcoders.openweather.ui.main
 
-import android.location.LocationManager
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
@@ -29,6 +28,7 @@ class MainViewModel(var getWeather: GetWeather)
         object ShowTurnOnLocation : UiModel()
         object Loading : UiModel()
         class Content(val weather: Weather) : UiModel()
+        class CheckLocation :UiModel()
         object RequestLocationPermission : UiModel()
     }
 
@@ -40,31 +40,14 @@ class MainViewModel(var getWeather: GetWeather)
         _model.value = UiModel.RequestLocationPermission
     }
 
+    fun checkLocation() {
+        _model.value = UiModel.CheckLocation()
+    }
+
     fun onCoarsePermissionRequested() {
         launch {
             _model.value = UiModel.Loading
             _model.value = UiModel.Content(getWeather.invoke())
-        }
-    }
-
-    fun checkLocation(locationManager: LocationManager) {
-
-        var gpsEnabled = false
-        var networkEnabled = false
-
-        try {
-            gpsEnabled = locationManager.isProviderEnabled(LocationManager.GPS_PROVIDER)
-        } catch (ex: Exception) {
-        }
-
-        try {
-            networkEnabled = locationManager.isProviderEnabled(LocationManager.NETWORK_PROVIDER)
-        } catch (ex: Exception) {
-        }
-        if (!gpsEnabled && !networkEnabled) {
-            _model.value = UiModel.ShowTurnOnLocation
-        } else {
-            refresh()
         }
     }
 
@@ -74,6 +57,10 @@ class MainViewModel(var getWeather: GetWeather)
 
     fun showTurnOnPermission(){
         _model.value = UiModel.ShowTurnOnPermission
+    }
+
+    fun showTurnOnLocation(){
+        _model.value = UiModel.ShowTurnOnLocation
     }
 
 }
