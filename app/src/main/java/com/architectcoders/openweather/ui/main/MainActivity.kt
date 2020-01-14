@@ -4,6 +4,7 @@ import android.Manifest
 import android.content.Context
 import android.graphics.Color
 import android.location.LocationManager
+import android.net.ConnectivityManager
 import android.os.Bundle
 import android.view.View.GONE
 import android.view.View.VISIBLE
@@ -12,6 +13,7 @@ import androidx.lifecycle.Observer
 import com.architectcoders.data.repository.RegionRepository
 import com.architectcoders.data.repository.WeatherRepository
 import com.architectcoders.domain.Weather
+import com.architectcoders.openweather.CheckInternet
 import com.architectcoders.openweather.CheckLocation
 import com.architectcoders.openweather.PermissionRequester
 import com.architectcoders.openweather.R
@@ -38,6 +40,8 @@ class MainActivity : AppCompatActivity() {
     )
 
     private lateinit var checkLocation : CheckLocation
+
+    private lateinit var checkInternet: CheckInternet
 
 
     //private val adapter = CitiesAdapter()
@@ -66,6 +70,8 @@ class MainActivity : AppCompatActivity() {
         //recycler.adapter = adapter
         checkLocation = CheckLocation(
             getSystemService(Context.LOCATION_SERVICE) as LocationManager)
+        checkInternet = CheckInternet(
+            getSystemService(Context.CONNECTIVITY_SERVICE) as ConnectivityManager)
         location.setOnClickListener {
             viewModel.checkLocation()
         }
@@ -113,10 +119,28 @@ class MainActivity : AppCompatActivity() {
         }
     }
 
+    private fun checkInternet() {
+        checkInternet.isOnline {
+            if (it){
+                viewModel.onCoarsePermissionRequested()
+            } else {
+                showCanCheckYourInternet()
+            }
+        }
+    }
+    private fun showCanCheckYourInternet() {
+        val snackbar = Snackbar.make(
+            main_constraintLayout, getString(R.string.internet_issue),
+            Snackbar.LENGTH_LONG
+        ).setAction("Action", null)
+        snackbar.setActionTextColor(Color.BLUE)
+        snackbar.show()
+    }
+
     private fun checkLocation() {
         checkLocation.checkLocation {
             if (it) {
-                viewModel.onCoarsePermissionRequested()
+                checkInternet()
             } else {
                 viewModel.showTurnOnLocation()
             }
