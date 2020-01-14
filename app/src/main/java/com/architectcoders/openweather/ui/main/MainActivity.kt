@@ -92,8 +92,8 @@ class MainActivity : AppCompatActivity() {
             is MainViewModel.UiModel.Content -> updateData(model.weather)
             is MainViewModel.UiModel.ShowTurnOnLocation -> showTurnOnLocation()
             is MainViewModel.UiModel.ShowTurnOnPermission -> showTurnOnPermission()
-            is MainViewModel.UiModel.CheckLocation -> checkLocation()
-            MainViewModel.UiModel.RequestLocationPermission -> checkLocation()
+            is MainViewModel.UiModel.CheckLocation -> checkPermission()
+            MainViewModel.UiModel.RequestLocationPermission -> checkPermission()
         }
     }
 
@@ -113,6 +113,16 @@ class MainActivity : AppCompatActivity() {
         }
     }
 
+    private fun checkLocation() {
+        checkLocation.checkLocation {
+            if (it) {
+                viewModel.onCoarsePermissionRequested()
+            } else {
+                viewModel.showTurnOnLocation()
+            }
+        }
+    }
+
     private fun showTurnOnLocation() {
         val snackbar = Snackbar.make(
             main_constraintLayout, getString(R.string.location_turn_on),
@@ -120,6 +130,16 @@ class MainActivity : AppCompatActivity() {
         ).setAction("Action", null)
         snackbar.setActionTextColor(Color.BLUE)
         snackbar.show()
+    }
+    
+    private fun checkPermission() {
+        coarsePermissionRequester.request {
+            if (it) {
+                checkLocation()
+            } else {
+                viewModel.showTurnOnPermission()
+            }
+        }
     }
 
     private fun showTurnOnPermission() {
@@ -129,26 +149,6 @@ class MainActivity : AppCompatActivity() {
         ).setAction("Action", null)
         snackbar.setActionTextColor(Color.BLUE)
         snackbar.show()
-    }
-
-    private fun checkPermission() {
-        coarsePermissionRequester.request {
-            if (it) {
-                viewModel.onCoarsePermissionRequested()
-            } else {
-                viewModel.showTurnOnPermission()
-            }
-        }
-    }
-
-    private fun checkLocation() {
-        checkLocation.checkLocation {
-            if (it) {
-                checkPermission()
-            } else {
-                viewModel.showTurnOnLocation()
-            }
-        }
     }
 
 }
