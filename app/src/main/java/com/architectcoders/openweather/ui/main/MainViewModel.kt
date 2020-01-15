@@ -9,8 +9,9 @@ import com.architectcoders.openweather.ui.common.Scope
 import com.architectcoders.usescases.GetWeather
 import kotlinx.coroutines.launch
 
-class MainViewModel(var getWeather: GetWeather)
-    : ViewModel(), Scope by Scope.Impl() {
+class MainViewModel(
+    var getWeather: GetWeather
+) : ViewModel(), Scope by Scope.Impl() {
 
     private val _model = MutableLiveData<UiModel>()
     val model: LiveData<UiModel>
@@ -26,10 +27,12 @@ class MainViewModel(var getWeather: GetWeather)
 
         object ShowTurnOnPermission : UiModel()
         object ShowTurnOnLocation : UiModel()
+        object ShowCanCheckYourInternet : UiModel()
         object Loading : UiModel()
         class Content(val weather: Weather) : UiModel()
-        class CheckLocation :UiModel()
         object RequestLocationPermission : UiModel()
+        object RequestCheckLocation : UiModel()
+        object RequestCheckInternet : UiModel()
     }
 
     init {
@@ -40,27 +43,39 @@ class MainViewModel(var getWeather: GetWeather)
         _model.value = UiModel.RequestLocationPermission
     }
 
-    fun checkLocation() {
-        _model.value = UiModel.CheckLocation()
-    }
-
-    fun onCoarsePermissionRequested() {
+    private fun myLaunch() {
         launch {
             _model.value = UiModel.Loading
             _model.value = UiModel.Content(getWeather.invoke())
         }
     }
 
+    fun onCoarsePermissionRequested(continuation: Boolean) {
+        if (continuation) {
+            _model.value = UiModel.RequestCheckLocation
+        } else {
+            _model.value = UiModel.ShowTurnOnPermission
+        }
+    }
+
+    fun checkLocation(continuation: Boolean) {
+        if (continuation) {
+            _model.value = UiModel.RequestCheckInternet
+        } else {
+            _model.value = UiModel.ShowTurnOnLocation
+        }
+    }
+
+    fun checkInternet(continuation: Boolean) {
+        if (continuation) {
+            myLaunch()
+        } else {
+            _model.value = UiModel.ShowCanCheckYourInternet
+        }
+    }
+
     fun onWeatherClicked(weather: Weather) {
         _navigation.value = Event(weather)
-    }
-
-    fun showTurnOnPermission(){
-        _model.value = UiModel.ShowTurnOnPermission
-    }
-
-    fun showTurnOnLocation(){
-        _model.value = UiModel.ShowTurnOnLocation
     }
 
 }
