@@ -1,4 +1,4 @@
-package com.architectcoders.openweather.ui.commun
+package com.architectcoders.openweather.ui.common
 
 import android.app.Activity
 import android.content.Context
@@ -16,9 +16,11 @@ import androidx.lifecycle.ViewModelProviders
 import androidx.recyclerview.widget.DiffUtil
 import androidx.recyclerview.widget.RecyclerView
 import com.architectcoders.openweather.R
+import com.architectcoders.openweather.WeatherApp
 import com.architectcoders.openweather.model.image.ImageMain
+import java.text.SimpleDateFormat
+import java.util.*
 import kotlin.properties.Delegates
-
 
 
 inline fun <reified T : Activity> Context.intentFor(body: Intent.() -> Unit): Intent =
@@ -60,28 +62,28 @@ fun getImageFromString(
             return chooseImage(context, ImageMain.SUNNY)
         }
         "Drizzle" -> {
-            return chooseImage(context,ImageMain.RAINY)
+            return chooseImage(context, ImageMain.RAINY)
         }
         "Rain" -> {
-            return chooseImage(context,ImageMain.RAINY)
+            return chooseImage(context, ImageMain.RAINY)
         }
         "Clouds" -> {
-            return chooseImage(context,ImageMain.CLOUDY)
+            return chooseImage(context, ImageMain.CLOUDY)
         }
         "Snow" -> {
-            return chooseImage(context,ImageMain.SNOWY)
+            return chooseImage(context, ImageMain.SNOWY)
         }
         "Extreme" -> {
-            return chooseImage(context,ImageMain.SNOWY)
+            return chooseImage(context, ImageMain.SNOWY)
         }
         "Mist" -> {
-            return chooseImage(context,ImageMain.FOG)
+            return chooseImage(context, ImageMain.FOG)
         }
-        "Fog"-> {
-            return chooseImage(context,ImageMain.FOG)
+        "Fog" -> {
+            return chooseImage(context, ImageMain.FOG)
         }
         else -> {
-            return chooseImage(context,ImageMain.SUNNY)
+            return chooseImage(context, ImageMain.SUNNY)
         }
     }
 }
@@ -108,4 +110,18 @@ inline fun <reified T : ViewModel> FragmentActivity.getViewModel(crossinline fac
     }
 
     return ViewModelProviders.of(this, vmFactory)[T::class.java]
+}
+
+
+val Context.app: WeatherApp
+    get() = applicationContext as WeatherApp
+
+fun getDateTime(timestamp: String): String? {
+    return try {
+        val sdf = SimpleDateFormat("HH:mm\ndd/MM")
+        val netDate = Date(timestamp.toLong() * 1000)
+        sdf.format(netDate)
+    } catch (e: Exception) {
+        e.toString()
+    }
 }

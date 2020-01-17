@@ -1,4 +1,4 @@
-package com.architectcoders.openweather.ui.commun
+package com.architectcoders.openweather.ui.common
 
 import kotlinx.coroutines.CoroutineScope
 import kotlinx.coroutines.Dispatchers

@@ -1,11 +1,11 @@
-package com.architectcoders.openweather.ui.commun.customview
+package com.architectcoders.openweather.ui.common.customview
 
 import android.content.Context
 import android.util.AttributeSet
 import android.widget.TextView
 import androidx.core.text.bold
+import com.architectcoders.domain.Weather
 import com.architectcoders.openweather.R
-import com.architectcoders.openweather.model.detail.Detail
 
 class WeatherDetailInfoView @JvmOverloads constructor(
     context: Context,
@@ -13,7 +13,7 @@ class WeatherDetailInfoView @JvmOverloads constructor(
     defStyleAttr: Int = 0
 ) : TextView(context, attrs, defStyleAttr) {
 
-    fun setMovie(detail: Detail) = with(detail) {
+    fun setWeather(weather: Weather) = with(weather) {
         text = androidx.core.text.buildSpannedString {
 
             bold { append(context.getString(R.string.detail_description)) }

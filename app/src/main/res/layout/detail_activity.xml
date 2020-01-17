@@ -9,8 +9,8 @@
     <com.google.android.material.appbar.AppBarLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:theme="@style/AppTheme.DarkOverlay"
-        android:fitsSystemWindows="true">
+        android:fitsSystemWindows="true"
+        android:theme="@style/AppTheme.DarkOverlay">
 
 
         <com.google.android.material.appbar.CollapsingToolbarLayout
@@ -53,33 +53,34 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content">
 
-            <TextView
-                android:id="@+id/weatherDetailSummary"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:padding="16dp"
-                android:gravity="center"
-                android:textAppearance="@style/TextAppearance.AppCompat.Medium"
-                tools:text="Lorem ipsum" />
-            <ImageView
-                android:id="@+id/weatherBackground"
-                android:layout_width="46dp"
-                android:layout_height="46dp"
-                android:layout_marginStart="18dp"
-                android:background="@drawable/background_circle"
-                app:layout_constraintBottom_toBottomOf="@+id/weatherDetailSummary"
-                app:layout_constraintStart_toStartOf="@+id/weatherDetailSummary"
-                app:layout_constraintTop_toTopOf="@+id/weatherDetailSummary" />
+                <TextView
+                    android:id="@+id/weatherDetailSummary"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:gravity="center"
+                    android:padding="16dp"
+                    android:textAppearance="@style/TextAppearance.AppCompat.Medium"
+                    tools:text="Lorem ipsum" />
 
-            <ImageView
-                android:id="@+id/weatherImageView"
-                android:layout_width="38dp"
-                android:layout_height="38dp"
-                android:background="@android:color/transparent"
-                app:layout_constraintBottom_toBottomOf="@+id/weatherDetailSummary"
-                app:layout_constraintEnd_toEndOf="@+id/weatherBackground"
-                app:layout_constraintStart_toStartOf="@+id/weatherBackground"
-                app:layout_constraintTop_toTopOf="@+id/weatherDetailSummary" />
+                <ImageView
+                    android:id="@+id/weatherBackground"
+                    android:layout_width="46dp"
+                    android:layout_height="46dp"
+                    android:layout_marginStart="18dp"
+                    android:background="@drawable/background_circle"
+                    app:layout_constraintBottom_toBottomOf="@+id/weatherDetailSummary"
+                    app:layout_constraintStart_toStartOf="@+id/weatherDetailSummary"
+                    app:layout_constraintTop_toTopOf="@+id/weatherDetailSummary" />
+
+                <ImageView
+                    android:id="@+id/weatherImageView"
+                    android:layout_width="38dp"
+                    android:layout_height="38dp"
+                    android:background="@android:color/transparent"
+                    app:layout_constraintBottom_toBottomOf="@+id/weatherDetailSummary"
+                    app:layout_constraintEnd_toEndOf="@+id/weatherBackground"
+                    app:layout_constraintStart_toStartOf="@+id/weatherBackground"
+                    app:layout_constraintTop_toTopOf="@+id/weatherDetailSummary" />
 
                 <ImageView
                     android:id="@+id/weatherArrowDown"
@@ -92,16 +93,21 @@
                     app:layout_constraintTop_toTopOf="@+id/weatherDetailSummary" />
 
             </androidx.constraintlayout.widget.ConstraintLayout>
-            <com.architectcoders.openweather.ui.commun.customview.WeatherDetailInfoView
+
+            <com.architectcoders.openweather.ui.common.customview.WeatherDetailInfoView
                 android:id="@+id/weatherDetailInfo"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:padding="16dp"
                 android:background="@color/white"
                 android:lineSpacingMultiplier="1.5"
+                android:padding="16dp"
                 android:textAppearance="@style/TextAppearance.AppCompat.Medium"
                 tools:text="Lorem ipsum" />
 
+            <androidx.recyclerview.widget.RecyclerView
+                android:id="@+id/weatherRecyclerView"
+                android:layout_width="match_parent"
+                android:layout_height="140dp" />
         </LinearLayout>
 
     </androidx.core.widget.NestedScrollView>
