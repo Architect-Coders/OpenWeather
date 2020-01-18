@@ -4,8 +4,8 @@ import android.content.Context
 import android.util.AttributeSet
 import android.widget.TextView
 import androidx.core.text.bold
+import com.architectcoders.domain.Weather
 import com.architectcoders.openweather.R
-import com.architectcoders.openweather.model.database.Weather
 
 class WeatherDetailInfoView @JvmOverloads constructor(
     context: Context,

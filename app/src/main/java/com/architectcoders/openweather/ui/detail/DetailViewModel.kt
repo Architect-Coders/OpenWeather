@@ -2,15 +2,17 @@ package com.architectcoders.openweather.ui.detail
 
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
-import com.architectcoders.openweather.model.WeatherRepository
-import com.architectcoders.openweather.model.database.Weather
+import com.architectcoders.domain.Weather
 import com.architectcoders.openweather.ui.common.ScopedViewModel
+import com.architectcoders.usescases.FindByCity
+import com.architectcoders.usescases.FindByTimestamp
 import kotlinx.coroutines.launch
 
 class DetailViewModel(
     private val timestamp: String,
-    private var weatherRepository: WeatherRepository
-) : ScopedViewModel() {
+    private var findByCity: FindByCity,
+    private var findByTimestamp: FindByTimestamp
+    ) : ScopedViewModel() {
 
     sealed class UiModel {
         class ShowWeatherByCity(val weatherList: List<Weather>): UiModel()
@@ -26,11 +28,11 @@ class DetailViewModel(
         }
 
     private fun findWeather() = launch {
-        _model.value = UiModel.Content(weatherRepository.findByTimestamp(timestamp))
+        _model.value = UiModel.Content(findByTimestamp.invoke(timestamp))
     }
 
     fun findWeatherByCity(city: String) = launch {
-        _model.value = UiModel.ShowWeatherByCity(weatherRepository.findByCity(city))
+        _model.value = UiModel.ShowWeatherByCity(findByCity.invoke(city))
     }
 
 }

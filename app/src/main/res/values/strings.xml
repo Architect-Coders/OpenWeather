@@ -3,6 +3,7 @@
     <string name="location_current_location">Current location\'s weather</string>
     <string name="location_turn_on">Turn on your location</string>
     <string name="location_turn_on_permission">Turn on permission, please</string>
+    <string name="internet_issue">Can you check your internet, please?</string>
     <string name="detail_description">Description:&#160;</string>
     <string name="detail_temperature">Temperature:&#160;</string>
     <string name="detail_pressure">Pressure:&#160;</string>

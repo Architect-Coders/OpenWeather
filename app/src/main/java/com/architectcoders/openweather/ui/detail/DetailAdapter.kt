@@ -4,8 +4,8 @@ import android.content.Context
 import android.view.View
 import android.view.ViewGroup
 import androidx.recyclerview.widget.RecyclerView
+import com.architectcoders.domain.Weather
 import com.architectcoders.openweather.R
-import com.architectcoders.openweather.model.database.Weather
 import com.architectcoders.openweather.ui.common.basicDiffUtil
 import com.architectcoders.openweather.ui.common.getDateTime
 import com.architectcoders.openweather.ui.common.getImageFromString
