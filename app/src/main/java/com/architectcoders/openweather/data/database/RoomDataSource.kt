@@ -1,13 +1,13 @@
-package com.architectcoders.openweather.model.database
+package com.architectcoders.openweather.data.database
 
 import com.architectcoders.data.source.LocalDataSource
-import com.architectcoders.openweather.model.toDomainWeather
-import com.architectcoders.openweather.model.toRoomWeather
+import com.architectcoders.openweather.data.toDomainWeather
+import com.architectcoders.openweather.data.toRoomWeather
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.withContext
 import com.architectcoders.domain.Weather as DomainWeathear
 
-import com.architectcoders.openweather.model.database.Weather as RoomWeather
+import com.architectcoders.openweather.data.database.Weather as RoomWeather
 
 class RoomDataSource(db: WeatherDatabase) :
     LocalDataSource {

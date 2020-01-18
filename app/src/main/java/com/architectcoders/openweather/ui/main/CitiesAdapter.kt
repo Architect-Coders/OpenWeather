@@ -4,7 +4,7 @@ import android.view.View
 import android.view.ViewGroup
 import androidx.recyclerview.widget.RecyclerView
 import com.architectcoders.openweather.R
-import com.architectcoders.openweather.model.server.Weather
+import com.architectcoders.openweather.data.server.Weather
 import com.architectcoders.openweather.ui.common.basicDiffUtil
 import com.architectcoders.openweather.ui.common.inflate
 import kotlinx.android.synthetic.main.city_item.view.*

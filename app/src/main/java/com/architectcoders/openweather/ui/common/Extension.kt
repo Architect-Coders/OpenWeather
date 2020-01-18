@@ -17,7 +17,7 @@ import androidx.recyclerview.widget.DiffUtil
 import androidx.recyclerview.widget.RecyclerView
 import com.architectcoders.openweather.R
 import com.architectcoders.openweather.WeatherApp
-import com.architectcoders.openweather.model.image.ImageMain
+import com.architectcoders.openweather.data.image.ImageMain
 import java.text.SimpleDateFormat
 import java.util.*
 import kotlin.properties.Delegates
