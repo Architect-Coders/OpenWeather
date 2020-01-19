@@ -10,22 +10,24 @@ import com.architectcoders.openweather.ui.common.app
 import com.architectcoders.openweather.ui.common.getImageFromString
 import com.architectcoders.openweather.ui.common.getViewModel
 import kotlinx.android.synthetic.main.detail_activity.*
+import org.koin.android.scope.currentScope
+import org.koin.android.viewmodel.ext.android.viewModel
+import org.koin.core.parameter.parametersOf
 
 class DetailActivity : AppCompatActivity() {
 
     companion object {
         const val WEATHER = "DetailActivity:weather"
     }
-    private lateinit var component: DetailActivityComponent
-    private val viewModel by lazy { getViewModel { component.detailViewModel } }
+    private val viewModel: DetailViewModel by currentScope.viewModel(this) {
+        parametersOf(intent.getStringExtra(WEATHER))
+    }
 
     private lateinit var adapter: DetailAdapter
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.detail_activity)
-
-        component = app.component.plus(DetailActivityModule(intent.getStringExtra(WEATHER)))
 
         viewModel.model.observe(this, Observer(::updateUI))
         initWeatherList()

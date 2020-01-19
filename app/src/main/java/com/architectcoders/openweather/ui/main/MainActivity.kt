@@ -29,11 +29,12 @@ import com.architectcoders.openweather.ui.common.startActivity
 import com.architectcoders.usescases.GetWeather
 import com.google.android.material.snackbar.Snackbar
 import kotlinx.android.synthetic.main.activity_main.*
+import org.koin.android.scope.currentScope
+import org.koin.android.viewmodel.ext.android.viewModel
 
 class MainActivity : AppCompatActivity() {
 
-    private lateinit var component: MainActivityComponent
-    private val viewModel: MainViewModel by lazy { getViewModel { component.mainViewModel } }
+    private val viewModel: MainViewModel by currentScope.viewModel(this)
 
     private val coarsePermissionRequester = PermissionRequester(
         this,
@@ -50,7 +51,6 @@ class MainActivity : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
 
-        component = app.component.plus(MainActivityModule())
         //recycler.adapter = adapter
         checkLocation = CheckLocation(
             getSystemService(Context.LOCATION_SERVICE) as LocationManager
