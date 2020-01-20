@@ -3,7 +3,8 @@ Open Weather has been created with propuse to follow to **[Architect-Coders](htt
 
 Open weather calls to **[OpenWeatherMap API](https://openweathermap.org/api)**
 
-ac-01-solid in **[apicall branch](https://github.com/Architect-Coders/OpenWeather/tree/apicall)**
+# ac-01-solid 
+- in **[apicall branch](https://github.com/Architect-Coders/OpenWeather/tree/apicall)**
 
 #1 **[Api Call](https://github.com/Architect-Coders/OpenWeather/issues/1)**
 
@@ -12,7 +13,7 @@ ac-01-solid in **[apicall branch](https://github.com/Architect-Coders/OpenWeathe
 #3 **[DetailActivity](https://github.com/Architect-Coders/OpenWeather/issues/3)**
 
 
-ac-02-presenetation:
+# ac-02-presenetation:
 
 - MVP pattern in **[mvp branch](https://github.com/Architect-Coders/OpenWeather/tree/mvp)**
 
@@ -32,12 +33,14 @@ ac-02-presenetation:
 #11 **[To remove activity in repository](https://github.com/Architect-Coders/OpenWeather/issues/11)**
 
 
-ac-03-JetPack in **[jetpack branch](https://github.com/Architect-Coders/OpenWeather/tree/jetpack)**
+# ac-03-JetPack 
+- in **[jetpack branch](https://github.com/Architect-Coders/OpenWeather/tree/jetpack)**
 
 #13  **[Save weather with room](https://github.com/Architect-Coders/OpenWeather/issues/13)**
 
 
-ac-04-Clean Architecture in **[clean branch](https://github.com/Architect-Coders/OpenWeather/tree/clean)**
+# ac-04-Clean Architecture 
+- in **[clean branch](https://github.com/Architect-Coders/OpenWeather/tree/clean)**
 
 #16  **[To organize frame](https://github.com/Architect-Coders/OpenWeather/issues/16)**
 
@@ -46,7 +49,8 @@ ac-04-Clean Architecture in **[clean branch](https://github.com/Architect-Coders
 #19  **[To put clean architecture in detail activity](https://github.com/Architect-Coders/OpenWeather/issues/19)**
 
 
-ac-05-Dependency Injection in **[di branch](https://github.com/Architect-Coders/OpenWeather/tree/di)**
+# ac-05-Dependency Injection 
+- in **[di branch](https://github.com/Architect-Coders/OpenWeather/tree/di)**
 
 #26  **[To add Dagger 2](https://github.com/Architect-Coders/OpenWeather/issues/26)**
 
