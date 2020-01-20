@@ -3,7 +3,7 @@ Open Weather has been created with propuse to follow to **[Architect-Coders](htt
 
 Open weather calls to **[OpenWeatherMap API](https://openweathermap.org/api)**
 
-# ac-01-solid 
+# 01-solid 
 - in **[apicall branch](https://github.com/Architect-Coders/OpenWeather/tree/apicall)**
 
 #1 **[Api Call](https://github.com/Architect-Coders/OpenWeather/issues/1)**
@@ -13,7 +13,7 @@ Open weather calls to **[OpenWeatherMap API](https://openweathermap.org/api)**
 #3 **[DetailActivity](https://github.com/Architect-Coders/OpenWeather/issues/3)**
 
 
-# ac-02-presenetation:
+# 02-presenetation:
 
 - MVP pattern in **[mvp branch](https://github.com/Architect-Coders/OpenWeather/tree/mvp)**
 
@@ -33,13 +33,13 @@ Open weather calls to **[OpenWeatherMap API](https://openweathermap.org/api)**
 #11 **[To remove activity in repository](https://github.com/Architect-Coders/OpenWeather/issues/11)**
 
 
-# ac-03-JetPack 
+# 03-JetPack 
 - in **[jetpack branch](https://github.com/Architect-Coders/OpenWeather/tree/jetpack)**
 
 #13  **[Save weather with room](https://github.com/Architect-Coders/OpenWeather/issues/13)**
 
 
-# ac-04-Clean Architecture 
+# 04-Clean Architecture 
 - in **[clean branch](https://github.com/Architect-Coders/OpenWeather/tree/clean)**
 
 #16  **[To organize frame](https://github.com/Architect-Coders/OpenWeather/issues/16)**
@@ -49,7 +49,7 @@ Open weather calls to **[OpenWeatherMap API](https://openweathermap.org/api)**
 #19  **[To put clean architecture in detail activity](https://github.com/Architect-Coders/OpenWeather/issues/19)**
 
 
-# ac-05-Dependency Injection 
+# 05-Dependency Injection 
 - in **[di branch](https://github.com/Architect-Coders/OpenWeather/tree/di)**
 
 #26  **[To add Dagger 2](https://github.com/Architect-Coders/OpenWeather/issues/26)**
@@ -57,7 +57,7 @@ Open weather calls to **[OpenWeatherMap API](https://openweathermap.org/api)**
 #27  **[To convert to Koin from Dagger 2](https://github.com/Architect-Coders/OpenWeather/issues/27)**
 
 
-Libraries and tools included:
+# Libraries and tools included:
 
 1. Androidx
 2. RecyclerViews
@@ -66,6 +66,8 @@ Libraries and tools included:
 5. **[Retrofit 2](https://github.com/square/retrofit)**
 6. **[Coroutines](https://github.com/Kotlin/kotlinx.coroutines)**
 7. **[Dexter](https://github.com/Karumi/Dexter)**
+8. **[JetPack](https://d.android.com/jetpack)**
+9. **[Koin](https://insert-koin.io/)**
 
 Also visit my blog: **[The developer world is yours](http://thedeveloperworldisyours.com/)**
 
