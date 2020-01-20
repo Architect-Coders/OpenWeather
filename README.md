@@ -5,8 +5,6 @@ Open weather calls to **[OpenWeatherMap API](https://openweathermap.org/api)**
 
 ac-01-solid in **[apicall branch](https://github.com/Architect-Coders/OpenWeather/tree/apicall)**
 
-Issues:
-
 #1 **[Api Call](https://github.com/Architect-Coders/OpenWeather/issues/1)**
 
 #2 **[Location](https://github.com/Architect-Coders/OpenWeather/issues/2)**
@@ -15,17 +13,15 @@ Issues:
 
 
 ac-02-presenetation:
-- MVP pattern in **[mvp branch](https://github.com/Architect-Coders/OpenWeather/tree/mvp)**
 
-Issues:
+- MVP pattern in **[mvp branch](https://github.com/Architect-Coders/OpenWeather/tree/mvp)**
 
 #5 **[MainActivity with MVP pattern](https://github.com/Architect-Coders/OpenWeather/issues/5)**
 
 #6 **[DetailActivity with MVP pattern](https://github.com/Architect-Coders/OpenWeather/issues/6)**
 
-- MVVM pattern in **[mvvm branch](https://github.com/Architect-Coders/OpenWeather/tree/mvvm)**
 
-Issues:
+- MVVM pattern in **[mvvm branch](https://github.com/Architect-Coders/OpenWeather/tree/mvvm)**
 
 #7 **[MainActivity with MVVM pattern](https://github.com/Architect-Coders/OpenWeather/issues/7)**
 
@@ -35,11 +31,27 @@ Issues:
 
 #11 **[To remove activity in repository](https://github.com/Architect-Coders/OpenWeather/issues/11)**
 
-- JetPack in **[jetpack branch](https://github.com/Architect-Coders/OpenWeather/tree/jetpack)**
 
-Issues:
+ac-03-JetPack in **[jetpack branch](https://github.com/Architect-Coders/OpenWeather/tree/jetpack)**
 
 #13  **[Save weather with room](https://github.com/Architect-Coders/OpenWeather/issues/13)**
+
+
+ac-04-Clean Architecture in **[clean branch](https://github.com/Architect-Coders/OpenWeather/tree/clean)**
+
+#16  **[To organize frame](https://github.com/Architect-Coders/OpenWeather/issues/16)**
+
+#18  **[To put clean architecture in main activity](https://github.com/Architect-Coders/OpenWeather/issues/18)**
+
+#19  **[To put clean architecture in detail activity](https://github.com/Architect-Coders/OpenWeather/issues/19)**
+
+
+ac-05-Dependency Injection in **[di branch](https://github.com/Architect-Coders/OpenWeather/tree/di)**
+
+#26  **[To add Dagger 2](https://github.com/Architect-Coders/OpenWeather/issues/26)**
+
+#27  **[To convert to Koin from Dagger 2](https://github.com/Architect-Coders/OpenWeather/issues/27)**
+
 
 Libraries and tools included:
 
