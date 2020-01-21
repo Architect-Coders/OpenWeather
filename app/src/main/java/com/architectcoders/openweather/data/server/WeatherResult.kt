@@ -1,4 +1,4 @@
-package com.architectcoders.openweather.model.server
+package com.architectcoders.openweather.data.server
 
 import com.google.gson.annotations.Expose
 

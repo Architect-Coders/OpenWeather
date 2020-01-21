@@ -17,10 +17,10 @@ import com.architectcoders.openweather.CheckInternet
 import com.architectcoders.openweather.CheckLocation
 import com.architectcoders.openweather.PermissionRequester
 import com.architectcoders.openweather.R
-import com.architectcoders.openweather.model.AndroidPermissionChecker
-import com.architectcoders.openweather.model.PlayServicesLocationDataSource
-import com.architectcoders.openweather.model.database.RoomDataSource
-import com.architectcoders.openweather.model.server.WeatherDataSource
+import com.architectcoders.openweather.data.AndroidPermissionChecker
+import com.architectcoders.openweather.data.PlayServicesLocationDataSource
+import com.architectcoders.openweather.data.database.RoomDataSource
+import com.architectcoders.openweather.data.server.WeatherDataSource
 import com.architectcoders.openweather.ui.common.app
 import com.architectcoders.openweather.ui.detail.DetailActivity
 import com.architectcoders.openweather.ui.common.getImageFromString
@@ -29,10 +29,12 @@ import com.architectcoders.openweather.ui.common.startActivity
 import com.architectcoders.usescases.GetWeather
 import com.google.android.material.snackbar.Snackbar
 import kotlinx.android.synthetic.main.activity_main.*
+import org.koin.android.scope.currentScope
+import org.koin.android.viewmodel.ext.android.viewModel
 
 class MainActivity : AppCompatActivity() {
 
-    private lateinit var viewModel: MainViewModel
+    private val viewModel: MainViewModel by currentScope.viewModel(this)
 
     private val coarsePermissionRequester = PermissionRequester(
         this,
@@ -56,22 +58,7 @@ class MainActivity : AppCompatActivity() {
         checkInternet = CheckInternet(
             getSystemService(Context.CONNECTIVITY_SERVICE) as ConnectivityManager
         )
-        viewModel = getViewModel {
-            val localDataSource = RoomDataSource(app.db)
-            MainViewModel(
-                GetWeather(
-                    WeatherRepository(
-                        localDataSource,
-                        WeatherDataSource(),
-                        RegionRepository(
-                            PlayServicesLocationDataSource(app),
-                            AndroidPermissionChecker(app)
-                        ),
-                        resources.getString(R.string.key_app)
-                    )
-                )
-            )
-        }
+
         location.setOnClickListener {
             checkLocation()
         }

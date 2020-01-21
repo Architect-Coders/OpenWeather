@@ -1,8 +1,8 @@
-package com.architectcoders.openweather.model
+package com.architectcoders.openweather.data
 
 import com.architectcoders.domain.Weather
-import com.architectcoders.openweather.model.database.Weather as RoomWeather
-import com.architectcoders.openweather.model.server.WeatherResult as ServerWeather
+import com.architectcoders.openweather.data.database.Weather as RoomWeather
+import com.architectcoders.openweather.data.server.WeatherResult as ServerWeather
 
 fun Weather.toRoomWeather(): RoomWeather =
     RoomWeather(

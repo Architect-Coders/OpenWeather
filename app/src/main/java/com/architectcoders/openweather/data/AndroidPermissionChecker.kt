@@ -1,4 +1,4 @@
-package com.architectcoders.openweather.model
+package com.architectcoders.openweather.data
 
 import android.app.Application
 import android.content.pm.PackageManager

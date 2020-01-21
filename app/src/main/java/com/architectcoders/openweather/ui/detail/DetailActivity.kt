@@ -4,60 +4,31 @@ import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import androidx.lifecycle.Observer
 import androidx.recyclerview.widget.LinearLayoutManager
-import com.architectcoders.data.repository.RegionRepository
-import com.architectcoders.data.repository.WeatherRepository
 import com.architectcoders.domain.Weather
 import com.architectcoders.openweather.R
-import com.architectcoders.openweather.model.AndroidPermissionChecker
-import com.architectcoders.openweather.model.PlayServicesLocationDataSource
-import com.architectcoders.openweather.model.database.RoomDataSource
-import com.architectcoders.openweather.model.server.WeatherDataSource
 import com.architectcoders.openweather.ui.common.app
 import com.architectcoders.openweather.ui.common.getImageFromString
 import com.architectcoders.openweather.ui.common.getViewModel
-import com.architectcoders.usescases.FindByCity
-import com.architectcoders.usescases.FindByTimestamp
 import kotlinx.android.synthetic.main.detail_activity.*
+import org.koin.android.scope.currentScope
+import org.koin.android.viewmodel.ext.android.viewModel
+import org.koin.core.parameter.parametersOf
 
 class DetailActivity : AppCompatActivity() {
 
     companion object {
         const val WEATHER = "DetailActivity:weather"
     }
+    private val viewModel: DetailViewModel by currentScope.viewModel(this) {
+        parametersOf(intent.getStringExtra(WEATHER))
+    }
 
-    private lateinit var viewModel: DetailViewModel
     private lateinit var adapter: DetailAdapter
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.detail_activity)
 
-        viewModel = getViewModel {
-            DetailViewModel(
-                intent.getStringExtra(WEATHER),
-                FindByCity(
-                    WeatherRepository(
-                        RoomDataSource(app.db),
-                        WeatherDataSource(),
-                        RegionRepository(
-                            PlayServicesLocationDataSource(app),
-                            AndroidPermissionChecker(app)
-                        ),
-                        resources.getString(R.string.key_app)
-                    )
-                ),
-                FindByTimestamp(
-                    WeatherRepository(
-                        RoomDataSource(app.db),
-                        WeatherDataSource(),
-                        RegionRepository(
-                            PlayServicesLocationDataSource(app),
-                            AndroidPermissionChecker(app)
-                        ),
-                        resources.getString(R.string.key_app)
-                    ))
-            )
-        }
         viewModel.model.observe(this, Observer(::updateUI))
         initWeatherList()
     }

@@ -1,4 +1,4 @@
-package com.architectcoders.openweather.model.server
+package com.architectcoders.openweather.data.server
 
 import kotlinx.coroutines.Deferred
 import retrofit2.http.GET

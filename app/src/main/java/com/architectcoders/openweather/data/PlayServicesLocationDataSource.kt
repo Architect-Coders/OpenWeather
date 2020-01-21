@@ -1,4 +1,4 @@
-package com.architectcoders.openweather.model
+package com.architectcoders.openweather.data
 
 import android.annotation.SuppressLint
 import android.app.Application

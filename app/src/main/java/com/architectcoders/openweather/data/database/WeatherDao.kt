@@ -1,4 +1,4 @@
-package com.architectcoders.openweather.model.database
+package com.architectcoders.openweather.data.database
 
 import androidx.room.*
 
