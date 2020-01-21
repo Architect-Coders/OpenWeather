@@ -3,6 +3,10 @@ Open Weather has been created with propuse to follow to **[Architect-Coders](htt
 
 Open weather calls to **[OpenWeatherMap API](https://openweathermap.org/api)**
 
+<p align="center">
+ <img src="https://github.com/Architect-Coders/OpenWeather/blob/master/animation.gif" width="300px" />
+</p>
+
 # 01-solid 
 - in **[apicall branch](https://github.com/Architect-Coders/OpenWeather/tree/apicall)**
 
