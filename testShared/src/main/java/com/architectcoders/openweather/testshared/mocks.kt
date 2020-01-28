@@ -1,5 +1,4 @@
-package com.architectcoders.openweather
-
+package com.architectcoders.openweather.testshared
 import com.architectcoders.domain.Weather
 
 val mockedWeather =  Weather(1,

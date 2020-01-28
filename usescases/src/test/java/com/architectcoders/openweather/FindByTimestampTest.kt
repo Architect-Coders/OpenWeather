@@ -1,6 +1,7 @@
 package com.architectcoders.openweather
 
 import com.architectcoders.data.repository.WeatherRepository
+import com.architectcoders.openweather.testshared.mockedWeather
 import com.architectcoders.usescases.FindByTimestamp
 import com.nhaarman.mockitokotlin2.whenever
 import kotlinx.coroutines.runBlocking

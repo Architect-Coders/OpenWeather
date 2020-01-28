@@ -1,2 +1,2 @@
-include ':app', ':data', ':usescases', ':domain'
+include ':app', ':data', ':usescases', ':domain', ':testShared'
 rootProject.name='OpenWheather'
