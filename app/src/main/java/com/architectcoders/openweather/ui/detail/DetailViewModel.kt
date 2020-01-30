@@ -6,13 +6,16 @@ import com.architectcoders.domain.Weather
 import com.architectcoders.openweather.ui.common.ScopedViewModel
 import com.architectcoders.usescases.FindByCity
 import com.architectcoders.usescases.FindByTimestamp
+import kotlinx.coroutines.CoroutineDispatcher
 import kotlinx.coroutines.launch
 
 class DetailViewModel(
     private val timestamp: String,
     private var findByCity: FindByCity,
-    private var findByTimestamp: FindByTimestamp
-    ) : ScopedViewModel() {
+    private var findByTimestamp: FindByTimestamp,
+    override val uiDispatcher: CoroutineDispatcher
+) :
+    ScopedViewModel(uiDispatcher) {
 
     sealed class UiModel {
         class ShowWeatherByCity(val weatherList: List<Weather>): UiModel()

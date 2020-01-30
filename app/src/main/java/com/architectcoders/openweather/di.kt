@@ -53,12 +53,12 @@ private val dataModule = module {
 
 private val scopesModule = module {
     scope(named<MainActivity>()) {
-        viewModel { MainViewModel(get()) }
+        viewModel { MainViewModel(get(), get()) }
         scoped { GetWeather(get()) }
     }
 
     scope(named<DetailActivity>()) {
-        viewModel { (timestamp: String) -> DetailViewModel(timestamp, get(), get()) }
+        viewModel { (timestamp: String) -> DetailViewModel(timestamp, get(), get(), get()) }
         scoped { FindByCity(get()) }
         scoped { FindByTimestamp(get()) }
     }

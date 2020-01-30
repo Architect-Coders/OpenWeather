@@ -61,6 +61,10 @@ allprojects {
                 testShared: project(':testShared')
         ]
 
+        androidxTestLibs = [
+                archCoreTesting: 'android.arch.core:core-testing:1.1.1'
+        ]
+
         androidTestLibs = [
                 testRunner: 'androidx.test:runner:1.2.0',
                 espresso  : 'androidx.test.espresso:espresso-core:3.2.0'

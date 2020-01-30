@@ -6,12 +6,15 @@ import androidx.lifecycle.ViewModel
 import com.architectcoders.domain.Weather
 import com.architectcoders.openweather.ui.common.Event
 import com.architectcoders.openweather.ui.common.Scope
+import com.architectcoders.openweather.ui.common.ScopedViewModel
 import com.architectcoders.usescases.GetWeather
+import kotlinx.coroutines.CoroutineDispatcher
 import kotlinx.coroutines.launch
 
 class MainViewModel(
-    var getWeather: GetWeather
-) : ViewModel(), Scope by Scope.Impl() {
+    var getWeather: GetWeather,
+    uiDispatcher: CoroutineDispatcher
+) : ScopedViewModel(uiDispatcher) {
 
     private val _model = MutableLiveData<UiModel>()
     val model: LiveData<UiModel>
