@@ -18,8 +18,8 @@ class DetailViewModel(
     ScopedViewModel(uiDispatcher) {
 
     sealed class UiModel {
-        class ShowWeatherByCity(val weatherList: List<Weather>): UiModel()
-        class Content(val weather: Weather) : UiModel()
+        data class ShowWeatherByCity(val weatherList: List<Weather>): UiModel()
+        data class Content(val weather: Weather) : UiModel()
     }
 
     private val _model = MutableLiveData<UiModel>()

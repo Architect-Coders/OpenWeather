@@ -32,7 +32,7 @@ class MainViewModel(
         object ShowTurnOnLocation : UiModel()
         object ShowCanCheckYourInternet : UiModel()
         object Loading : UiModel()
-        class Content(val weather: Weather) : UiModel()
+        data class Content(val weather: Weather) : UiModel()
         object RequestLocationPermission : UiModel()
         object RequestCheckLocation : UiModel()
         object RequestCheckInternet : UiModel()

@@ -18,8 +18,7 @@ import org.mockito.Mock
 import org.mockito.junit.MockitoJUnitRunner
 
 @RunWith(MockitoJUnitRunner::class)
-class DetailViewModelTest{
-
+class DetailViewModelTest {
 
     @get:Rule
     val rule = InstantTaskExecutorRule()
@@ -30,27 +29,42 @@ class DetailViewModelTest{
     @Mock
     lateinit var findByTimestamp: FindByTimestamp
 
-
     @Mock
     lateinit var observer: Observer<DetailViewModel.UiModel>
 
     lateinit var detailViewModel: DetailViewModel
 
-    val timestamp = "123456"
+    private val timestamp = "123456"
+    private val city = "Madrid"
 
     @Before
-    fun setup(){
-        detailViewModel = DetailViewModel(timestamp,findByCity, findByTimestamp, Dispatchers.Unconfined)
+    fun setup() {
+        detailViewModel =
+            DetailViewModel(timestamp, findByCity, findByTimestamp, Dispatchers.Unconfined)
     }
 
     @Test
-    fun `observing LiveData finds the weather by timestamp`(){
+    fun `observing LiveData finds the weather by timestamp`() {
         runBlocking {
             whenever(findByTimestamp.invoke(timestamp)).thenReturn(mockedWeather)
 
             detailViewModel.model.observeForever(observer)
 
             verify(observer).onChanged(DetailViewModel.UiModel.Content(mockedWeather))
+        }
+    }
+
+    @Test
+    fun `observing LiveData finds the weather by city`() {
+        runBlocking {
+            val weatherList = listOf(mockedWeather.copy(id = 1))
+            whenever(findByTimestamp.invoke(timestamp)).thenReturn(mockedWeather)
+            whenever(findByCity.invoke(city)).thenReturn(weatherList)
+            detailViewModel.model.observeForever(observer)
+
+            detailViewModel.findWeatherByCity(city)
+
+            verify(observer).onChanged(DetailViewModel.UiModel.ShowWeatherByCity(weatherList))
         }
     }
 }
