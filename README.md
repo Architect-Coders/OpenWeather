@@ -62,6 +62,15 @@ Open weather calls to **[OpenWeatherMap API](https://openweathermap.org/api)**
 #27  **[To convert to Koin from Dagger 2](https://github.com/Architect-Coders/OpenWeather/issues/27)**
 
 
+# 06-Testing 
+- in **[tests](https://github.com/Architect-Coders/OpenWeather/tree/tests)**
+
+#33  **[To add JUnit test in MainViewModel and DetailViewModel](https://github.com/Architect-Coders/OpenWeather/issues/33)**
+
+#35  **[To add integration test in MainViewModel and DetailViewModel](https://github.com/Architect-Coders/OpenWeather/issues/35)**
+
+
+
 # Libraries and tools included:
 
 1. Androidx
