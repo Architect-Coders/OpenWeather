@@ -1,4 +1,4 @@
-package com.architectcoders.openweather
+package com.architectcoders.openweather.ui.common
 
 import android.app.Activity
 import com.karumi.dexter.Dexter

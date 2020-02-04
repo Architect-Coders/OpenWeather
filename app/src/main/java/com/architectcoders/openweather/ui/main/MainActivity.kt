@@ -10,23 +10,14 @@ import android.view.View.GONE
 import android.view.View.VISIBLE
 import androidx.appcompat.app.AppCompatActivity
 import androidx.lifecycle.Observer
-import com.architectcoders.data.repository.RegionRepository
-import com.architectcoders.data.repository.WeatherRepository
 import com.architectcoders.domain.Weather
-import com.architectcoders.openweather.CheckInternet
-import com.architectcoders.openweather.CheckLocation
-import com.architectcoders.openweather.PermissionRequester
+import com.architectcoders.openweather.ui.common.CheckInternet
+import com.architectcoders.openweather.ui.common.CheckLocation
+import com.architectcoders.openweather.ui.common.PermissionRequester
 import com.architectcoders.openweather.R
-import com.architectcoders.openweather.data.AndroidPermissionChecker
-import com.architectcoders.openweather.data.PlayServicesLocationDataSource
-import com.architectcoders.openweather.data.database.RoomDataSource
-import com.architectcoders.openweather.data.server.WeatherDataSource
-import com.architectcoders.openweather.ui.common.app
 import com.architectcoders.openweather.ui.detail.DetailActivity
 import com.architectcoders.openweather.ui.common.getImageFromString
-import com.architectcoders.openweather.ui.common.getViewModel
 import com.architectcoders.openweather.ui.common.startActivity
-import com.architectcoders.usescases.GetWeather
 import com.google.android.material.snackbar.Snackbar
 import kotlinx.android.synthetic.main.activity_main.*
 import org.koin.android.scope.currentScope
@@ -36,10 +27,11 @@ class MainActivity : AppCompatActivity() {
 
     private val viewModel: MainViewModel by currentScope.viewModel(this)
 
-    private val coarsePermissionRequester = PermissionRequester(
-        this,
-        Manifest.permission.ACCESS_COARSE_LOCATION
-    )
+    private val coarsePermissionRequester =
+        PermissionRequester(
+            this,
+            Manifest.permission.ACCESS_COARSE_LOCATION
+        )
 
     private lateinit var checkLocation: CheckLocation
 
