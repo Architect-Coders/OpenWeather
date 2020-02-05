@@ -1,11 +1,13 @@
 package com.architectcoders.openweather.ui
 
+import okhttp3.mockwebserver.MockWebServer
 import org.junit.rules.TestRule
 import org.junit.runner.Description
 import org.junit.runners.model.Statement
 import org.koin.core.context.loadKoinModules
 import org.koin.core.qualifier.named
 import org.koin.dsl.module
+import com.jakewharton.espresso.OkHttp3IdlingResource
 import kotlin.concurrent.thread
 
 class MockWebServerRule : TestRule {
