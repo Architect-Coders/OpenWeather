@@ -6,15 +6,15 @@ import okhttp3.logging.HttpLoggingInterceptor
 import retrofit2.Retrofit
 import retrofit2.converter.gson.GsonConverterFactory
 
-object WeatherDB {
+class WeatherDB(baseUrl: String) {
 
-    private val okHttpClient = HttpLoggingInterceptor().run {
+    val okHttpClient = HttpLoggingInterceptor().run {
         level = HttpLoggingInterceptor.Level.BODY
         OkHttpClient.Builder().addInterceptor(this).build()
     }
 
     val service: TheWeatherDBService = Retrofit.Builder()
-        .baseUrl("https://api.openweathermap.org/data/2.5/")
+        .baseUrl(baseUrl)
         .client(okHttpClient)
         .addCallAdapterFactory(CoroutineCallAdapterFactory())
         .addConverterFactory(GsonConverterFactory.create())
