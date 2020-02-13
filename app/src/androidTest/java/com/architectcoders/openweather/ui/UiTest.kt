@@ -1,10 +1,13 @@
 package com.architectcoders.openweather.ui
 
 import androidx.test.core.app.ApplicationProvider
-import androidx.test.espresso.Espresso
+import androidx.test.espresso.Espresso.onView
 import androidx.test.espresso.IdlingRegistry
-import androidx.test.espresso.assertion.ViewAssertions
+import androidx.test.espresso.action.ViewActions.click
+import androidx.test.espresso.assertion.ViewAssertions.matches
 import androidx.test.espresso.matcher.ViewMatchers
+import androidx.test.espresso.matcher.ViewMatchers.isDisplayed
+import androidx.test.espresso.matcher.ViewMatchers.withText
 import androidx.test.rule.ActivityTestRule
 import androidx.test.rule.GrantPermissionRule
 import com.architectcoders.openweather.R
@@ -47,13 +50,18 @@ class UiTest : KoinTest {
     }
 
     @Test
-    fun clickAMovieNavigatesToDetail() {
+    fun clickAWeatherNavigatesToDetail() {
         activityTestRule.launchActivity(null)
 
-        Espresso.onView(ViewMatchers.withId(R.id.location_city)).perform()
+        onView(ViewMatchers.withId(R.id.location_city)).perform(click())
 
-        Espresso.onView(ViewMatchers.withId(R.id.weatherDetailToolbar))
-            .check(ViewAssertions.matches(ViewMatchers.hasDescendant(ViewMatchers.withText("Tarancon"))))
-
+        onView(ViewMatchers.withId(R.id.weatherDetailSummary))
+            .check(matches(isDisplayed()))
+        onView(ViewMatchers.withId(R.id.weatherDetailSummary))
+            .check(matches(withText("Clear")))
+        onView(ViewMatchers.withId(R.id.weatherDetailToolbar))
+            .check(matches(isDisplayed()))
+        onView(ViewMatchers.withId(R.id.weatherDetailToolbar))
+            .check(matches(ViewMatchers.hasDescendant(withText("Tarancon"))))
     }
 }

@@ -1,6 +1,7 @@
 package com.architectcoders.openweather.utils
 
 import android.content.Context
+import androidx.test.platform.app.InstrumentationRegistry
 import okhttp3.mockwebserver.MockResponse
 import java.io.BufferedReader
 import java.io.InputStreamReader
@@ -12,14 +13,13 @@ fun MockResponse.fromJson(context: Context, jsonFile: String): MockResponse =
 
 private
 fun readJsonFile(context: Context, jsonFilePath: String): String {
-    val res = context.packageManager.getResourcesForApplication("com.architectcoders.openweather.test")
 
     var br: BufferedReader? = null
 
     try {
         br = BufferedReader(
             InputStreamReader(
-                res.assets.open(
+                InstrumentationRegistry.getInstrumentation().context.assets.open(
                     jsonFilePath
                 ), StandardCharsets.UTF_8
             )
