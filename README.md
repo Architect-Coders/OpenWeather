@@ -68,7 +68,7 @@ Open weather calls to **[OpenWeatherMap API](https://openweathermap.org/api)**
 #33  **[To add JUnit test in MainViewModel and DetailViewModel](https://github.com/Architect-Coders/OpenWeather/issues/33)**
 
 #35  **[To add integration test in MainViewModel and DetailViewModel](https://github.com/Architect-Coders/OpenWeather/issues/35)**
-
+#38  **[To add espresso test](https://github.com/Architect-Coders/OpenWeather/issues/38)**
 
 
 # Libraries and tools included:
