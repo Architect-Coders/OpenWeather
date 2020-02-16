@@ -68,6 +68,7 @@ Open weather calls to **[OpenWeatherMap API](https://openweathermap.org/api)**
 #33  **[To add JUnit test in MainViewModel and DetailViewModel](https://github.com/Architect-Coders/OpenWeather/issues/33)**
 
 #35  **[To add integration test in MainViewModel and DetailViewModel](https://github.com/Architect-Coders/OpenWeather/issues/35)**
+
 #38  **[To add espresso test](https://github.com/Architect-Coders/OpenWeather/issues/38)**
 
 
@@ -82,6 +83,9 @@ Open weather calls to **[OpenWeatherMap API](https://openweathermap.org/api)**
 7. **[Dexter](https://github.com/Karumi/Dexter)**
 8. **[JetPack](https://d.android.com/jetpack)**
 9. **[Koin](https://insert-koin.io/)**
+10. **[Mockito](https://site.mockito.org/)**
+11. **[MockWebServer](https://github.com/square/okhttp/tree/master/mockwebserver)**
+12. **[Espresso](https://developer.android.com/training/testing/espresso)**
 
 Also visit my blog: **[The developer world is yours](http://thedeveloperworldisyours.com/)**
 
